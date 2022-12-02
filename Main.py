@@ -12,13 +12,11 @@ while running:
 
     # look at all events
     for event in pygame.event.get():
-        # exit if 'x' button pressed
-        if event.type == pygame.QUIT:
-            quit()
-        # exit if 'ESC' pressed
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                quit()
+        # check if the player is trying to exit the game
+        m.checkExit(event)
 
     # update game window
     m.update()
+
+
+
