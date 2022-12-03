@@ -23,7 +23,7 @@ class Sprite:
                                             (self.image.get_width() * scale, self.image.get_height() * scale))
         # collision box
         self.rect = self.image.get_rect()
-        self.show = True
+        self._show = True
 
     def draw(self, surface):
         # makes sure that if the sprite moves then the collision box will move as well
@@ -31,3 +31,15 @@ class Sprite:
         # draws the sprite if it is meant to be visible
         if self.show:
             surface.blit(self.image, (self.X, self.Y))
+
+    @property
+    def show(self):
+        return self._show
+
+    @show.setter
+    def show(self, b):
+        if type(b) == '<class \'bool\'>':
+            self._show = b
+        else:
+            raise CustomError('Show attribute must be Boolean')
+
