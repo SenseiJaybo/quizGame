@@ -29,8 +29,13 @@ class Player(Sprite):
         if not self.borderCollision():
             # look at all keys being pressed
             keys = pygame.key.get_pressed()
+            # check for both left and right being pressed
+            if keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]:
+                self.right = False
+                self.left = False
+                self.walkCount = 0
             # move left
-            if keys[pygame.K_LEFT]:
+            elif keys[pygame.K_LEFT]:
                 self.X -= self.speed
                 self.left = True
                 self.right = False
@@ -41,7 +46,6 @@ class Player(Sprite):
                 self.left = False
                 self.right = True
                 self.walkCount += 1
-            # if there is no horizontal momentum
             else:
                 self.right = False
                 self.left = False
@@ -71,12 +75,17 @@ class Player(Sprite):
         # if player is at the end of cycle, reset to beginning
         if self.walkCount + 1 >= 24:
             self.walkCount = 0
+        # both being pressed
+        if self.right and self.left:
+            self.image = self.idle
+            self.walkCount = 0
         # loads walk cycle for left and right
-        if self.right:
+        elif self.right:
             self.image = self.walkRight[self.walkCount // 4]
         elif self.left:
             self.image = self.walkLeft[self.walkCount // 4]
-        # loads idle if not moving
+        # neither being pressed
         else:
             self.image = self.idle
             self.walkCount = 0
+

@@ -1,10 +1,13 @@
 import pygame
 import sqlite3
 from Main_class import *
+from Player import *
 
-# load main class
+# instantiate plater
+p = Player(100, 100, 10)
+
+# instantiate main class
 m = Main()
-m.__init__()
 
 # while loop to run program
 running = True
@@ -14,6 +17,11 @@ while running:
     for event in pygame.event.get():
         # check if the player is trying to exit the game
         m.checkExit(event)
+        # update the player
+        p.draw(m.screen)
+        p.movement()
+        p.borderCollision()
+        p.animate()
 
     # update game window
     m.update()

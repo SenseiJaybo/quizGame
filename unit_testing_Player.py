@@ -32,8 +32,49 @@ from Player import *
 # class MovementTestCases(unittest.TestCase):
 #     def setUp(self):
 #         self.player = Player(10, 10, 1)
-#         self.keys = 0
+#         self.keys = []
 #
+#     def testLeftAndRightAtOnce(self):
+#         self.keys.append(0)
+#         self.keys.append(1)
+#         self.player.movement(self.keys)
+#         self.assertEqual(self.player.X, 10)
+#         self.assertEqual(self.player.Y, 10)
+#         self.assertEqual(self.player.left, False)
+#         self.assertEqual(self.player.right, False)
+#         self.assertEqual(self.player.walkCount, 0)
+#
+#     def testUpAndDownAtOnce(self):
+#         self.keys.append(2)
+#         self.keys.append(3)
+#         self.player.movement(self.keys)
+#         self.assertEqual(self.player.X, 10)
+#         self.assertEqual(self.player.Y, 10)
+#
+#     def testEverythingAtOnce(self):
+#         self.keys.append(0)
+#         self.keys.append(1)
+#         self.keys.append(2)
+#         self.keys.append(3)
+#         self.player.movement(self.keys)
+#         self.assertEqual(self.player.X, 10)
+#         self.assertEqual(self.player.Y, 10)
+#         self.assertEqual(self.player.left, False)
+#         self.assertEqual(self.player.right, False)
+#         self.assertEqual(self.player.walkCount, 0)
+#
+#     def testLeftUpAndDown(self):
+#         self.keys.append(0)
+#         self.keys.append(2)
+#         self.keys.append(3)
+#         self.player.movement(self.keys)
+#         self.assertEqual(self.player.X, 5)
+#         self.assertEqual(self.player.Y, 10)
+#         self.assertEqual(self.player.left, True)
+#         self.assertEqual(self.player.right, False)
+#         self.assertEqual(self.player.walkCount, 1)
+
+
 #     def testLeftMovement(self):
 #         self.keys = 0
 #         self.player.movement(self.keys)
