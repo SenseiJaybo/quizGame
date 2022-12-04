@@ -6,7 +6,7 @@ m = Main()
 
 
 class Sprite:
-    def __init__(self, x, y, scale, image):
+    def __init__(self, x, y, scale, image='cursor.png'):
         # check that X is in screen confines
         if x >= m.screen.get_width() or x <= 0:
             raise CustomError("X value must be within screen confines")
@@ -32,6 +32,7 @@ class Sprite:
         if self.show:
             surface.blit(self.image, (self.X, self.Y))
 
+    # messing around with getters and setters
     @property
     def show(self):
         return self._show

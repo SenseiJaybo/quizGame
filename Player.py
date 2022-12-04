@@ -1,5 +1,4 @@
 import pygame
-
 from Sprite import *
 from Main_class import *
 
@@ -7,8 +6,8 @@ m = Main()
 
 
 class Player(Sprite):
-    def __init__(self, x, y, scale, image):
-        super().__init__(x, y, scale, image)
+    def __init__(self, x, y, scale):
+        super().__init__(x, y, scale)
         self.speed = 5
         self.walkRight = [pygame.image.load('adventurer-run-00.png'), pygame.image.load('adventurer-run-01.png'),
                           pygame.image.load('adventurer-run-02.png'), pygame.image.load('adventurer-run-03.png'),
