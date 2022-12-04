@@ -68,16 +68,71 @@ from Player import *
 #         self.assertEqual(self.player.walkCount, 0)
 
 
-class BorderCollisionTestCases(unittest.TestCase):
+# class BorderCollisionTestCases(unittest.TestCase):
+#     def setUp(self):
+#         self.player = Player(1, 1, 1)
+#
+#     def testNormalDataX(self):
+#         self.player.X = 50
+#         self.assertEqual(self.player.borderCollision(), False)
+#
+#     def testNormalDataY(self):
+#         self.player.Y = 69
+#         self.assertEqual(self.player.borderCollision(), False)
+#
+#     def testBoundaryDataX(self):
+#         self.player.X = 0
+#         self.assertEqual(self.player.borderCollision(), True)
+#
+#     def testBoundaryDataY(self):
+#         self.player.Y = m.screen.get_height()
+#         self.assertEqual(self.player.borderCollision(), True)
+#
+#     def testErroneousDataX(self):
+#         self.player.X = -99
+#         self.assertEqual(self.player.borderCollision(), True)
+#
+#     def testErroneousDataY(self):
+#         self.player.Y = -108
+#         self.assertEqual(self.player.borderCollision(), True)
+
+class AnimatePlayerTestCases(unittest.TestCase):
     def setUp(self):
         self.player = Player(1, 1, 1)
 
-    def testNormalData(self):
-        self.player.X = 50
-        self.assertEqual(self.player.borderCollision())
+    def testNormalDataRight(self):
+        self.player.right = True
+        self.player.walkCount = 10
+        self.player.animate()
+        self.assertEqual(self.player.image, self.player.walkRight[2])
+
+    def testNormalDataLeft(self):
+        self.player.left = True
+        self.player.walkCount = 13
+        self.player.animate()
+        self.assertEqual(self.player.image, self.player.walkLeft[3])
+
+    def testBoundaryDataRight(self):
+        self.player.right = True
+        self.player.walkCount = 0
+        self.player.animate()
+        self.assertEqual(self.player.image, self.player.walkRight[0])
+
+    def testBoundaryDataLeft(self):
+        self.player.left = True
+        self.player.walkCount = 23
+        self.player.animate()
+        self.assertEqual(self.player.walkCount, 0)
+
+    def testErroneousData(self):
+        self.player.right = True
+        self.player.left = True
+        self.player.walkCount = 5
+        self.player.animate()
+        self.assertEqual(self.player.image, self.player.idle)
 
 
-spriteClassSuite = unittest.TestLoader().loadTestsFromTestCase(BorderCollisionTestCases)
+spriteClassSuite = unittest.TestLoader().loadTestsFromTestCase(AnimatePlayerTestCases)
 
 runner = unittest.TextTestRunner()
 runner.run(spriteClassSuite)
