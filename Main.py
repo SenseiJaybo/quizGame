@@ -4,7 +4,7 @@ from Main_class import *
 from Player import *
 
 # instantiate plater
-p = Player(100, 100, 10)
+p = Player(300, 300, 10)
 
 # instantiate main class
 m = Main()
