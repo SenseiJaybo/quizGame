@@ -77,21 +77,25 @@ class Player(Sprite):
         if self.Y >= m.screen.get_height() - 37 * self.scale:
             self.Y = m.screen.get_height() - 37 * self.scale
 
-    def animate(self):
+    def animate(self, surface):
         # if player is at the end of cycle, reset to beginning
         if self.walkCount + 1 >= 24:
             self.walkCount = 0
         # both being pressed
         if self.right and self.left:
             self.image = self.idle
+            self.draw(surface)
             self.walkCount = 0
         # loads walk cycle for left and right
         elif self.right:
             self.image = self.walkRight[self.walkCount // 4]
+            self.draw(surface)
         elif self.left:
             self.image = self.walkLeft[self.walkCount // 4]
+            self.draw(surface)
         # neither being pressed
         else:
             self.image = self.idle
+            self.draw(surface)
             self.walkCount = 0
 
