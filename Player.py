@@ -63,8 +63,11 @@ class Player(Sprite):
             self.left = False
             self.walkCount = 0
 
+        # if both
+        if keys[pygame.K_UP] and keys[pygame.K_DOWN]:
+            pass
         # move up
-        if keys[pygame.K_UP]:
+        elif keys[pygame.K_UP]:
             self.Y -= self.speed
         # move down
         elif keys[pygame.K_DOWN]:
