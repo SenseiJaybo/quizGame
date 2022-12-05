@@ -13,15 +13,17 @@ m = Main()
 running = True
 while running:
 
+    # draw background
+    m.drawBackground(0)
     # look at all events
     for event in pygame.event.get():
         # check if the player is trying to exit the game
         m.checkExit(event)
         # update the player
-        p.draw(m.screen)
         p.movement()
         p.borderCollision()
         p.animate()
+        p.draw(m.screen)
 
     # update game window
     m.update()

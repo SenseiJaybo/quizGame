@@ -32,7 +32,6 @@ class Sprite:
         if self.show:
             surface.blit(self.image, (self.X, self.Y))
 
-    # messing around with getters and setters
     @property
     def show(self):
         return self._show
