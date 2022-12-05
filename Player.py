@@ -14,10 +14,15 @@ class Player(Sprite):
         self.walkRight = [pygame.image.load('adventurer-run-00.png'), pygame.image.load('adventurer-run-01.png'),
                           pygame.image.load('adventurer-run-02.png'), pygame.image.load('adventurer-run-03.png'),
                           pygame.image.load('adventurer-run-04.png'), pygame.image.load('adventurer-run-05.png')]
+        for i, v in enumerate(self.walkRight):
+            self.walkRight[i] = pygame.transform.scale(v, (v.get_width() * scale, v.get_height() * scale))
         self.walkLeft = [pygame.image.load('adventurer-run-00L.png'), pygame.image.load('adventurer-run-01L.png'),
                          pygame.image.load('adventurer-run-02L.png'), pygame.image.load('adventurer-run-03L.png'),
                          pygame.image.load('adventurer-run-04L.png'), pygame.image.load('adventurer-run-05L.png')]
+        for i, v in enumerate(self.walkLeft):
+            self.walkLeft[i] = pygame.transform.scale(v, (v.get_width() * scale, v.get_height() * scale))
         self.idle = pygame.image.load('cursor.png')
+        self.idle = pygame.transform.scale(self.idle, (self.idle.get_width() * scale, self.idle.get_height() * scale))
         # variable to keep track of the animation cycle
         self.walkCount = 0
         # variable to keep track of what direction the player is moving in
