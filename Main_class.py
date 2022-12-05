@@ -21,7 +21,7 @@ class Main:
 
     def update(self):
         # set frame rate
-        self.clock.tick(24)
+        self.clock.tick(18)
         pygame.display.update()
 
     def checkExit(self, event):

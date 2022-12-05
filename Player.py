@@ -10,7 +10,7 @@ class Player(Sprite):
         # init using Sprite class method
         super().__init__(x, y, scale)
         self.scale = scale
-        self.speed = 5
+        self.speed = 13
         # load images for the walk cycles
         self.walkRight = [pygame.image.load('adventurer-run-00.png'), pygame.image.load('adventurer-run-01.png'),
                           pygame.image.load('adventurer-run-02.png'), pygame.image.load('adventurer-run-03.png'),
@@ -79,7 +79,7 @@ class Player(Sprite):
 
     def animate(self, surface):
         # if player is at the end of cycle, reset to beginning
-        if self.walkCount + 1 >= 24:
+        if self.walkCount + 1 >= 18:
             self.walkCount = 0
         # both being pressed
         if self.right and self.left:
@@ -88,10 +88,10 @@ class Player(Sprite):
             self.walkCount = 0
         # loads walk cycle for left and right
         elif self.right:
-            self.image = self.walkRight[self.walkCount // 4]
+            self.image = self.walkRight[self.walkCount // 3]
             self.draw(surface)
         elif self.left:
-            self.image = self.walkLeft[self.walkCount // 4]
+            self.image = self.walkLeft[self.walkCount // 3]
             self.draw(surface)
         # neither being pressed
         else:
