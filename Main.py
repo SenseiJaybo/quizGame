@@ -4,7 +4,7 @@ from Main_class import *
 from Player import *
 
 # instantiate plater
-p = Player(300, 300, 5)
+p = Player(157, 482, 4)
 
 # instantiate main class
 m = Main()
@@ -18,6 +18,7 @@ while running:
     p.movement()
     p.borderCollision()
     p.animate(m.screen)
+    pygame.draw.rect(m.screen, (0, 255, 0), p.rect)
 
     # look at all events
     for event in pygame.event.get():

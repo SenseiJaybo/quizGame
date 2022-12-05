@@ -26,8 +26,6 @@ class Sprite:
         self._show = True
 
     def draw(self, surface):
-        # makes sure that if the sprite moves then the collision box will move as well
-        self.rect.move(self.X, self.Y)
         # draws the sprite if it is meant to be visible
         if self.show:
             surface.blit(self.image, (self.X, self.Y))
