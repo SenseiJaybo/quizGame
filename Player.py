@@ -9,6 +9,7 @@ class Player(Sprite):
     def __init__(self, x, y, scale):
         # init using Sprite class method
         super().__init__(x, y, scale)
+        self.lastDirectionRight = True
         self.scale = scale
         self.speed = 13
         # load images for the walk cycles
@@ -26,8 +27,11 @@ class Player(Sprite):
         for i, v in enumerate(self.walkLeft):
             self.walkLeft[i] = pygame.transform.scale(v, (v.get_width() * scale, v.get_height() * scale))
 
+        # load and scale idle sprites
         self.idle = pygame.image.load('cursor.png')
+        self.idleL = pygame.image.load('cursorL.png')
         self.idle = pygame.transform.scale(self.idle, (self.idle.get_width() * scale, self.idle.get_height() * scale))
+        self.idleL = pygame.transform.scale(self.idleL, (self.idleL.get_width() * scale, self.idleL.get_height() * scale))
         # variable to keep track of the animation cycle
         self.walkCount = 0
         # variable to keep track of what direction the player is moving in
@@ -81,21 +85,21 @@ class Player(Sprite):
         # if player is at the end of cycle, reset to beginning
         if self.walkCount + 1 >= 18:
             self.walkCount = 0
-        # both being pressed
-        if self.right and self.left:
-            self.image = self.idle
+        # both being pressed or neither being pressed
+        if self.right and self.left or not self.right ^ self.left:
+            if self.lastDirectionRight:
+                self.image = self.idle
+            else:
+                self.image = self.idleL
             self.draw(surface)
             self.walkCount = 0
         # loads walk cycle for left and right
         elif self.right:
+            self.lastDirectionRight = True
             self.image = self.walkRight[self.walkCount // 3]
             self.draw(surface)
         elif self.left:
+            self.lastDirectionRight = False
             self.image = self.walkLeft[self.walkCount // 3]
             self.draw(surface)
-        # neither being pressed
-        else:
-            self.image = self.idle
-            self.draw(surface)
-            self.walkCount = 0
 
