@@ -9,15 +9,6 @@ class Main:
         # create screen and clock
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.clock = pygame.time.Clock()
-        # load background images in list
-        self.backgrounds = [pygame.image.load('Title screen.png'), pygame.image.load('Settings.png'),
-                            pygame.image.load('Supermarket no man.png'), pygame.image.load('Supermarket man.png'),
-                            pygame.image.load('Trains no man.png'), pygame.image.load('Trains man.png'),
-                            pygame.image.load('Quiz.png')]
-
-    def drawBackground(self, i):
-        # draw the background
-        self.screen.blit(self.backgrounds[i], (0, 0))
 
     def update(self):
         # set frame rate

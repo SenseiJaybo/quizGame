@@ -10,7 +10,7 @@ from State_machine import GameMachine
 machine = GameMachine()
 
 # instantiate title
-t = Title()
+t = Title(machine)
 
 # instantiate plater
 p = Player(157, 482, 4)
@@ -21,14 +21,19 @@ m = Main()
 # while loop to run program
 running = True
 while running:
+
     # if in title screen
     if machine.is_title:
         # draw background
-        m.drawBackground(0)
+        t.drawScene(m.screen)
+        # check button presses
+        t.buttonChecks(p.rect)
         # update the player
         p.movement()
         p.borderCollision()
         p.animate(m.screen)
+    elif machine.is_leave:
+        exit()
 
     # look at all events
     for event in pygame.event.get():
