@@ -3,10 +3,10 @@ from statemachine import StateMachine, State
 
 class GameMachine(StateMachine):
     title = State('Title_Screen', initial=True)
+    leave = State('Exit')
     settings = State('Settings')
     level1 = State('Level_1')
     level2 = State('Level_2')
-    leave = State('Exit')
 
     leaveGame = title.to(leave)
     openSettings = title.to(settings)
@@ -15,5 +15,3 @@ class GameMachine(StateMachine):
     goBack = settings.to(title)
     finishLevel1 = level1.to(title)
     finishLevel2 = level2.to(title)
-
-

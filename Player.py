@@ -73,7 +73,7 @@ class Player(Sprite):
         elif keys[pygame.K_DOWN]:
             self.Y += self.speed
         # makes sure that if the sprite moves then the collision box will move as well
-        self.rect.update((self.X + 48, self.Y + 25), (30 * self.scale, 40 * self.scale))
+        self.rect.update((self.X + 53, self.Y + 32), (23 * self.scale, 27 * self.scale))
 
     def borderCollision(self):
         # check player's position in relation to screen border

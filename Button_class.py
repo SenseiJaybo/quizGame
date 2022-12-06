@@ -23,6 +23,9 @@ class Button(Sprite):
 
         if self.isPressed:
             self.action()
+            return True
+        else:
+            return False
 
     # action the button does
     def action(self):

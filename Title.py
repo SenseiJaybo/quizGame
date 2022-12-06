@@ -16,10 +16,13 @@ class Title:
     def drawScene(self, surface):
         surface.blit(self.image, (0, 0))
 
-    def buttonChecks(self, rect):
+    def buttonChecks(self, rect, surface):
         # check if any of the buttons are being pressed
         for i in self.buttons:
-            i.clicked(rect)
+            if i.clicked(rect):
+                break
+            # delete later
+            pygame.draw.rect(surface, (0, 255, 0), i.rect)
 
 
 class FirstLevelButton(Button):

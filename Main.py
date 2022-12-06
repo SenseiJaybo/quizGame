@@ -27,11 +27,20 @@ while running:
         # draw background
         t.drawScene(m.screen)
         # check button presses
-        t.buttonChecks(p.rect)
+        t.buttonChecks(p.rect, m.screen)
         # update the player
         p.movement()
         p.borderCollision()
         p.animate(m.screen)
+        pygame.draw.rect(m.screen, (255, 0, 0), p.rect)
+
+    # if changing settings
+    elif machine.is_settings:
+        print('settings')
+        machine.goBack()
+    # if leaving
+    elif machine.is_leave:
+        exit()
     # if in level 1
     elif machine.is_level1:
         print(1)
@@ -40,13 +49,7 @@ while running:
     elif machine.finishLevel2:
         print(2)
         machine.finishLevel2()
-    # if changing settings
-    elif machine.is_settings:
-        print('settings')
-        machine.goBack()
-    # if leaving
-    elif machine.is_leave:
-        exit()
+
 
     # look at all events
     for event in pygame.event.get():
@@ -55,3 +58,6 @@ while running:
 
     # update game window
     m.update()
+
+    # delete later
+    print(machine.current_state)
