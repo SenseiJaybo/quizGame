@@ -3,6 +3,10 @@ import sqlite3
 from Main_class import *
 from Player import *
 from Button_class import Button
+from Title import Title
+
+# instantiate title
+t = Title()
 
 # instantiate plater
 p = Player(157, 482, 4)
