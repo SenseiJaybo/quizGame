@@ -2,6 +2,7 @@ import pygame
 import sqlite3
 from Main_class import *
 from Player import *
+from Button_class import Button
 
 # instantiate plater
 p = Player(157, 482, 4)
@@ -18,7 +19,6 @@ while running:
     p.movement()
     p.borderCollision()
     p.animate(m.screen)
-    pygame.draw.rect(m.screen, (0, 255, 0), p.rect)
 
     # look at all events
     for event in pygame.event.get():
