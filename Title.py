@@ -21,8 +21,6 @@ class Title:
         for i in self.buttons:
             if i.clicked(rect):
                 break
-            # delete later
-            pygame.draw.rect(surface, (0, 255, 0), i.rect)
 
 
 class FirstLevelButton(Button):

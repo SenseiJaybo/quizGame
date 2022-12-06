@@ -32,7 +32,6 @@ while running:
         p.movement()
         p.borderCollision()
         p.animate(m.screen)
-        pygame.draw.rect(m.screen, (255, 0, 0), p.rect)
 
     # if changing settings
     elif machine.is_settings:
