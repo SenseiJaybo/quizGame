@@ -32,6 +32,19 @@ while running:
         p.movement()
         p.borderCollision()
         p.animate(m.screen)
+    # if in level 1
+    elif machine.is_level1:
+        print(1)
+        machine.finishLevel1()
+    # if in level 2
+    elif machine.finishLevel2:
+        print(2)
+        machine.finishLevel2()
+    # if changing settings
+    elif machine.is_settings:
+        print('settings')
+        machine.goBack()
+    # if leaving
     elif machine.is_leave:
         exit()
 
