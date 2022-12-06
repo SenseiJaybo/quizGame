@@ -50,7 +50,6 @@ while running:
         print(2)
         machine.finishLevel2()
 
-
     # look at all events
     for event in pygame.event.get():
         # check if the player is trying to exit the game
