@@ -4,6 +4,10 @@ from Main_class import *
 from Player import *
 from Button_class import Button
 from Title import Title
+from State_machine import GameMachine
+
+# instantiate state machine
+machine = GameMachine()
 
 # instantiate title
 t = Title()
@@ -17,12 +21,14 @@ m = Main()
 # while loop to run program
 running = True
 while running:
-    # draw background
-    m.drawBackground(0)
-    # update the player
-    p.movement()
-    p.borderCollision()
-    p.animate(m.screen)
+    # if in title screen
+    if machine.is_title:
+        # draw background
+        m.drawBackground(0)
+        # update the player
+        p.movement()
+        p.borderCollision()
+        p.animate(m.screen)
 
     # look at all events
     for event in pygame.event.get():
