@@ -8,12 +8,12 @@ m = Main()
 class Sprite:
     def __init__(self, x, y, scale, image='cursor.png'):
         # check that X is in screen confines
-        if x >= m.screen.get_width() or x <= 0:
+        if x >= m.screen.get_width() or x < 0:
             raise CustomError("X value must be within screen confines")
         else:
             self.X = x
         # check that Y is in screen confines
-        if y >= m.screen.get_height() or y <= 0:
+        if y >= m.screen.get_height() or y < 0:
             raise CustomError("Y value must be within screen confines")
         else:
             self.Y = y

@@ -44,9 +44,9 @@ while running:
         s.drawScene(m.screen)
         s.buttonChecks(p)
         s.buttons[1].draw(m.screen)
-        # # delete later
-        # pygame.draw.rect(m.screen, (0, 255, 0), s.buttons[0])
-        # pygame.draw.rect(m.screen, (0, 255, 0), s.buttons[0])
+        # delete later
+        pygame.draw.rect(m.screen, (0, 255, 0), s.buttons[0])
+        pygame.draw.rect(m.screen, (0, 255, 0), s.buttons[1])
 
         # update the player
         p.movement()

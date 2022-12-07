@@ -9,7 +9,7 @@ class Settings:
         self.buttons = []
         # create all buttons
         self.buttons.append(BackButton(635, 721, machine))
-        self.buttons.append(Slider(770, 370, machine))
+        self.buttons.append(Slider(90, 17, machine))
 
     def drawScene(self, surface):
         surface.blit(self.image, (0, 0))
@@ -34,6 +34,8 @@ class Slider(Button):
         self.upperBound = 1196 - 140
         self.volume = 1.0
         self.range = self.upperBound - self.lowerBound
+        # set collision
+        self.rect.update((340, 325), (860, 90))
 
     def setVolume(self):
         self.volume = (self.X - self.lowerBound)
@@ -58,7 +60,7 @@ class Slider(Button):
 class BackButton(Button):
     # back button
     def __init__(self, x, y, machine):
-        super().__init__(x, y, box_X=120, box_Y=120)
+        super().__init__(x, y, box_X=300, box_Y=100)
         self.machine = machine
 
     # go to first level
