@@ -32,10 +32,26 @@ class Slider(Button):
         self.lowerBound = -262
         # furthest right position minus the width of the knob
         self.upperBound = 440
-        self.volume = 1.0
+        self._volume = 1.0
         self.range = self.upperBound - self.lowerBound
         # set collision
         self.rect.update((445, 325), (635, 90))
+
+    @property
+    def volume(self):
+        return self._volume
+
+    @volume.setter
+    def volume(self, value):
+        if value > 2.0:
+            self._volume = 2.0
+        elif value < 0.0:
+            self._volume = 0.0
+        else:
+            self._volume = value
+
+
+
 
     def setVolume(self):
         self.volume = (self.X - self.lowerBound) / (self.range / 2)

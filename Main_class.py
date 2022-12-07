@@ -4,6 +4,8 @@ import pygame
 class Main:
     def __init__(self):
         pygame.init()
+        # sound mixer init
+        pygame.mixer.init()
         # set a key to automatically repeat if it is held down
         pygame.key.set_repeat(200, 20)
         # create screen and clock
