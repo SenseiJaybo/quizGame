@@ -29,16 +29,16 @@ class Slider(Button):
         self.image = pygame.image.load('knob.png')
         self.machine = machine
         # attributes to calculate volume
-        self.lowerBound = 340
+        self.lowerBound = -262
         # furthest right position minus the width of the knob
-        self.upperBound = 1196 - 140
+        self.upperBound = 440
         self.volume = 1.0
         self.range = self.upperBound - self.lowerBound
         # set collision
         self.rect.update((445, 325), (635, 90))
 
     def setVolume(self):
-        self.volume = (self.X - self.lowerBound)
+        self.volume = (self.X - self.lowerBound) / (self.range / 2)
 
     def clicked(self, player):
         self.isPressed = False
