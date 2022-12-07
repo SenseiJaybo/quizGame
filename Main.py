@@ -6,6 +6,10 @@ from Button_class import Button
 from Title import Title
 from State_machine import GameMachine
 from Settings import Settings
+from sound import Sound
+
+# instantiate sound mixer
+mixer = Sound()
 
 # instantiate state machine
 machine = GameMachine()
@@ -21,6 +25,9 @@ p = Player(157, 482, 4)
 
 # instantiate main class
 m = Main()
+
+# background music
+pygame.mixer.music.play(-1)
 
 # while loop to run program
 running = True
@@ -38,6 +45,12 @@ while running:
         p.borderCollision()
         p.animate(m.screen)
 
+        # play music
+        mixer.unpause()
+
+        # update volume
+        mixer.setVolume(s.buttons[1].volume)
+
     # if changing settings
     elif machine.is_settings:
         # load settings page
@@ -50,18 +63,22 @@ while running:
         p.borderCollision()
         p.animate(m.screen)
 
-        # delete later
-        print(s.buttons[1].volume)
+        # update volume
+        mixer.setVolume(s.buttons[1].volume)
 
     # if leaving
     elif machine.is_leave:
         exit()
     # if in level 1
     elif machine.is_level1:
+        # pause music
+        mixer.pause()
         print(1)
         machine.finishLevel1()
     # if in level 2
     elif machine.finishLevel2:
+        # pause music
+        mixer.pause()
         print(2)
         machine.finishLevel2()
 
@@ -72,4 +89,3 @@ while running:
 
     # update game window
     m.update()
-
