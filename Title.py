@@ -16,7 +16,7 @@ class Title:
     def drawScene(self, surface):
         surface.blit(self.image, (0, 0))
 
-    def buttonChecks(self, rect, surface):
+    def buttonChecks(self, rect):
         # check if any of the buttons are being pressed
         for i in self.buttons:
             if i.clicked(rect):

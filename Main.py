@@ -5,9 +5,13 @@ from Player import *
 from Button_class import Button
 from Title import Title
 from State_machine import GameMachine
+from Settings import Settings
 
 # instantiate state machine
 machine = GameMachine()
+
+# instantiate settings
+s = Settings(machine)
 
 # instantiate title
 t = Title(machine)
@@ -27,7 +31,8 @@ while running:
         # draw background
         t.drawScene(m.screen)
         # check button presses
-        t.buttonChecks(p.rect, m.screen)
+        t.buttonChecks(p.rect)
+
         # update the player
         p.movement()
         p.borderCollision()
@@ -35,8 +40,19 @@ while running:
 
     # if changing settings
     elif machine.is_settings:
-        print('settings')
-        machine.goBack()
+        # load settings page
+        s.drawScene(m.screen)
+        s.buttonChecks(p)
+        s.buttons[1].draw(m.screen)
+        # # delete later
+        # pygame.draw.rect(m.screen, (0, 255, 0), s.buttons[0])
+        # pygame.draw.rect(m.screen, (0, 255, 0), s.buttons[0])
+
+        # update the player
+        p.movement()
+        p.borderCollision()
+        p.animate(m.screen)
+
     # if leaving
     elif machine.is_leave:
         exit()
