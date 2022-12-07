@@ -35,7 +35,7 @@ class Slider(Button):
         self.volume = 1.0
         self.range = self.upperBound - self.lowerBound
         # set collision
-        self.rect.update((340, 325), (860, 90))
+        self.rect.update((445, 325), (635, 90))
 
     def setVolume(self):
         self.volume = (self.X - self.lowerBound)
@@ -50,7 +50,8 @@ class Slider(Button):
                 self.isPressed = True
 
         if self.isPressed:
-            self.X = player.X
+            # offset
+            self.X = player.X - 575
             self.setVolume()
             return True
         else:

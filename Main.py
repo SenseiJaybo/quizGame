@@ -53,6 +53,9 @@ while running:
         p.borderCollision()
         p.animate(m.screen)
 
+        # delete later
+        print(s.buttons[1].volume)
+
     # if leaving
     elif machine.is_leave:
         exit()
@@ -73,5 +76,3 @@ while running:
     # update game window
     m.update()
 
-    # delete later
-    print(machine.current_state)
