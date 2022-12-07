@@ -8,7 +8,7 @@ class Settings:
         self.image = pygame.image.load('Settings.png')
         self.buttons = []
         # create all buttons
-        self.buttons.append(BackButton(635, 721, machine))
+        self.buttons.append(BackButton(75, 710, machine))
         self.buttons.append(Slider(0, 17, machine))
 
     def drawScene(self, surface):
