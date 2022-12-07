@@ -51,7 +51,7 @@ class Slider(Button):
             self._volume = value
 
     def setVolume(self):
-        self.volume = (self.X - self.lowerBound) / (self.range / 2)
+        self.volume = (self.X - self.lowerBound) / self.range
 
     def clicked(self, player):
         self.isPressed = False
