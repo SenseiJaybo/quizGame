@@ -1,6 +1,6 @@
 import pygame
 import sqlite3
-from Main_class import *
+from Game_class import *
 from Player import *
 from Button_class import Button
 from Title import Title
@@ -24,7 +24,7 @@ t = Title(machine)
 p = Player(157, 482, 4)
 
 # instantiate main class
-m = Main()
+m = Game()
 
 # background music
 pygame.mixer.music.play(-1)

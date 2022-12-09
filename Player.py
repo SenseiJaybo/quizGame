@@ -1,8 +1,8 @@
 import pygame
 from Sprite import *
-from Main_class import *
+from Game_class import *
 
-m = Main()
+m = Game()
 
 
 class Player(Sprite):

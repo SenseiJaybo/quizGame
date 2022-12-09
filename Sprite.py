@@ -1,8 +1,8 @@
 import pygame
-from Main_class import *
+from Game_class import *
 from Errors import CustomError
 
-m = Main()
+m = Game()
 
 
 class Sprite:

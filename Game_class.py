@@ -1,7 +1,7 @@
 import pygame
 
 
-class Main:
+class Game:
     def __init__(self):
         pygame.init()
         # set a key to automatically repeat if it is held down
