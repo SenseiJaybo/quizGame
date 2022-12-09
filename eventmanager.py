@@ -20,21 +20,23 @@ class TickEvent(Event):
         self.name = "Tick event"
 
 
-class InputEvent(Event):
-
-    def __init__(self, unicodechar, clickpos):
-        self.name = "Input event"
-        self.char = unicodechar
-        self.clickpos = clickpos
-
-    def __str__(self):
-        return f'{self.name}, char={self.char}, clickpos={self.clickpos}'
-
-
 class InitializeEvent(Event):
 
     def __init__(self):
         self.name = "Initialize event"
+
+
+class StateChangeEvent(Event):
+
+    def __init__(self, state):
+        self.name = "State change event"
+        self.state = state
+
+    def __str__(self):
+        if self.state:
+            return '%s pushed %s' % (self.name, self.state)
+        else:
+            return '%s popped' % (self.name,)
 
 
 class EventManager:

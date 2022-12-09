@@ -26,5 +26,16 @@ class Keyboard:
                     if event.key == pygame.K_ESCAPE:
                         self.evManager.Post(QuitEvent())
                     else:
-                        # post any other keys to the message queue for everyone else to see
-                        self.evManager.Post(InputEvent(event.unicode, None))
+                        currentstate = self.model.state.peek()
+                        if currentstate == Model.STATE_TITLE or currentstate == Model.STATE_SETTINGS:
+                            self.keysMenu(event)
+
+                        elif currentstate == Model.STATE_LEVEL1 or currentstate == Model.STATE_LEVEL2:
+                            self.keysLevel(event)
+
+    def keysMenu(self, event):
+        pass
+
+    def keysLevel(self, event):
+        pass
+

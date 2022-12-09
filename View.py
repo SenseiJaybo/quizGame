@@ -13,10 +13,9 @@ class GraphicalView:
         self.isinitialized = False
         self.screen = None
         self.clock = None
-        self.smallfont = None
 
 
-# recieve from message queue
+# receive from message queue
 def notify(self, event):
     if isinstance(event, InitializeEvent):
         self.initialize()
@@ -25,25 +24,37 @@ def notify(self, event):
         self.isinitialized = False
         pygame.quit()
     elif isinstance(event, TickEvent):
-        self.renderall()
+        currentstate = self.model.state.peek()
+        if currentstate == Model.STATE_TITLE:
+            self.renderTitle()
+        elif currentstate == Model.STATE_SETTINGS:
+            self.renderSettings()
+        elif currentstate == Model.STATE_LEVEL1:
+            self.renderLevel1()
+        elif currentstate == Model.STATE_LEVEL2:
+            self.renderLevel2()
         # set fps to 18 frames per second
         self.clock.tick(18)
 
 
-# draw the data from model
-def renderall(self):
+def renderTitle(self):
     if not self.isinitialized:
         return
-    # clear display
-    self.screen.fill((0, 0, 0))
-    # draw some words on the screen
-    somewords = self.smallfont.render(
-        'The View is busy drawing on your screen',
-        True,
-        (0, 255, 0))
-    self.screen.blit(somewords, (0, 0))
-    # flip the display to show whatever we drew
-    pygame.display.flip()
+
+
+def renderSettings(self):
+    if not self.isinitialized:
+        return
+
+
+def renderLevel1(self):
+    if not self.isinitialized:
+        return
+
+
+def renderLevel2(self):
+    if not self.isinitialized:
+        return
 
 
 def initialize(self):
@@ -52,6 +63,5 @@ def initialize(self):
     pygame.display.set_caption('Spain without the pain')
     self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     self.clock = pygame.time.Clock()
-    self.smallfont = pygame.font.Font(None, 40)
     self.isinitialized = True
     pygame.key.set_repeat(200, 20)
