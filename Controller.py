@@ -48,12 +48,12 @@ class Keyboard:
                     self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL1))
                     break
             # settings button
-            elif i == 2:
+            elif i == 1:
                 if v.clicked(self.model.player.rect):
                     self.evManager.Post(StateChangeEvent(Model.STATE_SETTINGS))
                     break
             # level 2 button
-            elif i == 1:
+            elif i == 2:
                 if v.clicked(self.model.player.rect):
                     self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL2))
                     break
