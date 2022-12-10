@@ -48,10 +48,6 @@ class EventManager:
     def RegisterListener(self, listener):
         self.listeners[listener] = 1
 
-    def UnregisterListener(self, listener):
-        if listener in self.listeners.keys():
-            del self.listeners[listener]
-
     # add event to message queue
     def Post(self, event):
 

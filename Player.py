@@ -86,7 +86,7 @@ class Player(Sprite):
         if self.Y >= m.screen.get_height() - 37 * self.scale:
             self.Y = m.screen.get_height() - 37 * self.scale
 
-    def animate(self, surface):
+    def animate(self):
         # if player is at the end of cycle, reset to beginning
         if self.walkCount + 1 >= 18:
             self.walkCount = 0
@@ -96,15 +96,12 @@ class Player(Sprite):
                 self.image = self.idle
             else:
                 self.image = self.idleL
-            self.draw(surface)
             self.walkCount = 0
         # loads walk cycle for left and right
         elif self.right:
             self.lastDirectionRight = True
             self.image = self.walkRight[self.walkCount // 3]
-            self.draw(surface)
         elif self.left:
             self.lastDirectionRight = False
             self.image = self.walkLeft[self.walkCount // 3]
-            self.draw(surface)
 

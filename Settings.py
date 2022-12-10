@@ -2,32 +2,12 @@ from Button_class import Button
 import pygame
 
 
-class Settings:
-    def __init__(self, machine):
-        # load background
-        self.image = pygame.image.load('Settings.png')
-        self.buttons = []
-        # create all buttons
-        self.buttons.append(BackButton(75, 710, machine))
-        self.buttons.append(Slider(0, 17, machine))
-
-    def drawScene(self, surface):
-        surface.blit(self.image, (0, 0))
-
-    def buttonChecks(self, rect):
-        # check if any of the buttons are being pressed
-        for i in self.buttons:
-            if i.clicked(rect):
-                break
-
-
 class Slider(Button):
     # volume slider
-    def __init__(self, x, y, machine):
+    def __init__(self, x, y):
         super().__init__(x, y, box_X=120, box_Y=120)
         # load image
         self.image = pygame.image.load('knob.png')
-        self.machine = machine
         # attributes to calculate volume
         self.lowerBound = -262
         # furthest right position minus the width of the knob
@@ -73,10 +53,12 @@ class Slider(Button):
 
 class BackButton(Button):
     # back button
-    def __init__(self, x, y, machine):
+    def __init__(self, x, y):
         super().__init__(x, y, box_X=300, box_Y=100)
-        self.machine = machine
 
     # go to first level
     def action(self):
-        self.machine.goBack()
+        pass
+
+
+settingsbuttons = [BackButton(75, 710), Slider(0, 17)]

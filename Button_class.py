@@ -1,7 +1,5 @@
 import pygame.key
-
 from Sprite import Sprite
-from Player import Player
 
 
 class Button(Sprite):
@@ -29,4 +27,4 @@ class Button(Sprite):
 
     # action the button does
     def action(self):
-        print('a')
+        pass
