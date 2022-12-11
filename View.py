@@ -21,6 +21,11 @@ class GraphicalView:
         self.titleimage = pygame.image.load('Title screen.png')
         # settings image
         self.settingsimage = pygame.image.load('Settings.png')
+        # level images
+        self.level1Image = pygame.image.load('Supermarket no man.png')
+        self.level1ImageTeacher = pygame.image.load('Supermarket man.png')
+        self.level2Image = pygame.image.load('Trains no man.png')
+        self.level2ImageTeacher = pygame.image.load('Trains man.png')
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -55,6 +60,12 @@ class GraphicalView:
 
     def renderLevel1(self):
         self.model.radio.pause()
+        self.screen.blit(self.level1ImageTeacher, (0, 0))
+        self.clock.tick(18)
+        pygame.display.update()
 
     def renderLevel2(self):
         self.model.radio.pause()
+        self.screen.blit(self.level2ImageTeacher, (0, 0))
+        self.clock.tick(18)
+        pygame.display.update()
