@@ -68,10 +68,6 @@ class QuizQuestions:
         self.currentList = []
 
 
-Q = QuizQuestions()
-print(Q.search(1, 3))
-
-
 class Dialogue:
     def __init__(self):
         self.conn = sq.connect('database.db')
@@ -197,10 +193,6 @@ class Dialogue:
         for i in self.c.execute(f'''SELECT line, last FROM dialogue WHERE level={level} AND stage={stage}'''):
             result.append(i)
         return result
-
-
-d = Dialogue()
-print(d.search(1, 1))
 
 
 class Transcript:
@@ -331,10 +323,17 @@ class Transcript:
 
     def search(self, level, stage):
         result = []
-        for i in self.c.execute(f'''SELECT line, transcription, last FROM transcript WHERE level={level} AND stage={stage}'''):
+        for i in self.c.execute(
+                f'''SELECT line, transcription, last FROM transcript WHERE level={level} AND stage={stage}'''):
             result.append(i)
         return result
 
 
 t = Transcript()
 print(t.search(1, 1))
+
+d = Dialogue()
+print(d.search(1, 1))
+
+Q = QuizQuestions()
+print(Q.search(1, 3))
