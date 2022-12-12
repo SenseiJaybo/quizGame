@@ -22,8 +22,8 @@ class GraphicalView:
         # settings image
         self.settingsimage = pygame.image.load('Settings.png')
         # level images
-        self.levelImages = [pygame.image.load('Supermarket no man.png'), pygame.image.load('Supermarket man.png'),
-                            pygame.image.load('Trains man.png'), pygame.image.load('Trains no man.png')]
+        self.levelImages = [1, pygame.image.load('Supermarket man.png'), pygame.image.load('Trains man.png')]
+        self.levelImagesNoMan = [1, pygame.image.load('Supermarket no man.png'), pygame.image.load('Trains no man.png')]
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -76,7 +76,7 @@ class GraphicalView:
     def renderTranscript(self):
         # sound
         # draw background
-        self.screen.blit(self.levelImages[self.model.level.level], (0, 0))
+        self.screen.blit(self.levelImagesNoMan[self.model.level.level], (0, 0))
         # draw text
         self.model.transcript.createTextImage()
         self.model.transcript.draw(self.screen, 130, 625)
@@ -85,7 +85,7 @@ class GraphicalView:
 
     def renderQuiz(self):
         # draw background
-        self.screen.blit(self.levelImages[self.model.level.level], (0, 0))
+        self.screen.blit(self.levelImagesNoMan[self.model.level.level], (0, 0))
         self.model.level.updateText(self.screen)
         self.model.level.createText()
         self.screen.blit(self.model.level.fontImage, (620, 500))
