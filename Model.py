@@ -4,6 +4,8 @@ from Player import Player
 from Settings import settingsbuttons
 from Title import titlebuttons
 from sound import Sound
+from Level import Level
+from TextBox import Text
 
 
 class GameEngine:
@@ -22,6 +24,10 @@ class GameEngine:
         self.titlebuttons = titlebuttons
         # settings buttons
         self.settingsbuttons = settingsbuttons
+        # level init
+        self.level = Level()
+        # init text class
+        self.text = Text()
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -29,6 +35,12 @@ class GameEngine:
         if isinstance(event, QuitEvent):
             self.running = False
         if isinstance(event, StateChangeEvent):
+            if event.state == STATE_LEVEL1:
+                self.level.level = 1
+                self.text.getDialogue(self.level)
+            elif event.state == STATE_LEVEL2:
+                self.level.level = 2
+                self.text.getDialogue(self.level)
             # pop request
             if not event.state:
                 # false if no more states are left
@@ -55,9 +67,11 @@ STATE_TITLE = 1
 STATE_SETTINGS = 2
 STATE_LEVEL1 = 3
 STATE_LEVEL2 = 4
+STATE_TRANSCRIPT = 5
+STATE_QUIZ = 6
 
 
-class StateMachine():
+class StateMachine:
     def __init__(self):
         self.statestack = []
 

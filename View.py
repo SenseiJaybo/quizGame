@@ -22,10 +22,8 @@ class GraphicalView:
         # settings image
         self.settingsimage = pygame.image.load('Settings.png')
         # level images
-        self.level1Image = pygame.image.load('Supermarket no man.png')
-        self.level1ImageTeacher = pygame.image.load('Supermarket man.png')
-        self.level2Image = pygame.image.load('Trains no man.png')
-        self.level2ImageTeacher = pygame.image.load('Trains man.png')
+        self.levelImages = [pygame.image.load('Supermarket no man.png'), pygame.image.load('Supermarket man.png'),
+                            pygame.image.load('Trains man.png'), pygame.image.load('Trains no man.png')]
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -39,13 +37,18 @@ class GraphicalView:
             elif currentstate == Model.STATE_SETTINGS:
                 self.renderSettings()
             elif currentstate == Model.STATE_LEVEL1:
-                self.renderLevel1()
+                self.renderLevel(1)
             elif currentstate == Model.STATE_LEVEL2:
-                self.renderLevel2()
+                self.renderLevel(2)
+            elif currentstate == Model.STATE_TRANSCRIPT:
+                self.renderTranscript()
+            elif currentstate == Model.STATE_QUIZ:
+                self.renderQuiz()
 
     def renderTitle(self):
         self.screen.blit(self.titleimage, (0, 0))
         self.model.player.draw(self.screen)
+        # update volume
         self.model.radio.setVolume(self.model.settingsbuttons[1].volume)
         self.clock.tick(18)
         pygame.display.update()
@@ -54,18 +57,24 @@ class GraphicalView:
         self.screen.blit(self.settingsimage, (0, 0))
         self.model.settingsbuttons[1].draw(self.screen)
         self.model.player.draw(self.screen)
+        # update volume
         self.model.radio.setVolume(self.model.settingsbuttons[1].volume)
         self.clock.tick(18)
         pygame.display.update()
 
-    def renderLevel1(self):
+    def renderLevel(self, level):
+        # pause sound
         self.model.radio.pause()
-        self.screen.blit(self.level1ImageTeacher, (0, 0))
+        # draw background
+        self.screen.blit(self.levelImages[level], (0, 0))
+        # draw text
+        self.model.text.createTextImage()
+        self.model.text.draw(self.screen, 130, 625)
         self.clock.tick(18)
         pygame.display.update()
 
-    def renderLevel2(self):
-        self.model.radio.pause()
-        self.screen.blit(self.level2ImageTeacher, (0, 0))
-        self.clock.tick(18)
-        pygame.display.update()
+    def renderTranscript(self):
+        pass
+
+    def renderQuiz(self):
+        pass

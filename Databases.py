@@ -3,8 +3,10 @@ import sqlite3 as sq
 
 class QuizQuestions:
     def __init__(self):
+        # connect to database file
         self.conn = sq.connect('database.db')
         self.c = self.conn.cursor()
+        # init table
         self.createTable()
         self.clearTable()
         self.fillTable()
@@ -79,7 +81,8 @@ class Dialogue:
     def createTable(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS dialogue (
         id INTEGER PRIMARY KEY,
-        line TEXT NOT NULL,
+        line1 TEXT NOT NULL,
+        line2 TEXT NOT NULL,
         level INTEGER NOT NULL,
         stage INTEGER NOT NULL,
         last BOOL NOT NULL
@@ -190,7 +193,7 @@ class Dialogue:
 
     def search(self, level, stage):
         result = []
-        for i in self.c.execute(f'''SELECT line, last FROM dialogue WHERE level={level} AND stage={stage}'''):
+        for i in self.c.execute(f'''SELECT line FROM dialogue WHERE level={level} AND stage={stage}'''):
             result.append(i)
         return result
 
@@ -329,11 +332,11 @@ class Transcript:
         return result
 
 
-t = Transcript()
-print(t.search(1, 1))
-
-d = Dialogue()
-print(d.search(1, 1))
-
-Q = QuizQuestions()
-print(Q.search(1, 3))
+# t = Transcript()
+# print(t.search(1, 1))
+#
+# d = Dialogue()
+# print(d.search(1, 1))
+#
+# Q = QuizQuestions()
+# print(Q.search(1, 3))

@@ -1,0 +1,30 @@
+import pygame
+
+
+class Text:
+    def __init__(self):
+        # font object
+        self.font = pygame.font.Font('freesansbold.ttf', 32)
+        self.textImage = None
+        self.pointer = 0
+        self.dialogue = []
+
+    def draw(self, surface, x, y):
+        # draws current rendered text image to screen
+        surface.blit(self.textImage, (x, y))
+
+    def getDialogue(self, level):
+        # clear list
+        self.dialogue = []
+        # gets a list of dialogue for current state
+        self.dialogue = level.dialogue.search(level.level, level.stage)
+
+    def createTextImage(self):
+        self.textImage = self.font.render(self.dialogue[self.pointer][0], True, (0, 0, 0))
+
+    def nextLine(self):
+        try:
+            var = self.dialogue[self.pointer + 1]
+            return True
+        except:
+            return False

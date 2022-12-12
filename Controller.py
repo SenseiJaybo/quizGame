@@ -16,7 +16,6 @@ class Keyboard:
 
     # Receive events posted to the message queue.
     def notify(self, event):
-
         if isinstance(event, TickEvent):
             # check state specific key presses
             currentstate = self.model.state.peek()
@@ -25,7 +24,11 @@ class Keyboard:
             elif currentstate == Model.STATE_SETTINGS:
                 self.keysSettings()
             elif currentstate == Model.STATE_LEVEL1 or currentstate == Model.STATE_LEVEL2:
-                self.keysLevel(event)
+                self.keysLevel()
+            elif currentstate == Model.STATE_TRANSCRIPT:
+                self.keysTranscript()
+            elif currentstate == Model.STATE_QUIZ:
+                self.keysQuiz()
             # check non state specific button presses
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -80,5 +83,22 @@ class Keyboard:
                 if v.clicked(self.model.player):
                     break
 
-    def keysLevel(self, event):
+    def keysLevel(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.evManager.Post(QuitEvent())
+            # handle key down events
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.evManager.Post(QuitEvent())
+                if event.key == pygame.K_a:
+                    if self.model.text.nextLine():
+                        self.model.text.pointer += 1
+                    else:
+                        self.evManager.Post(StateChangeEvent(Model.STATE_TRANSCRIPT))
+
+    def keysTranscript(self):
+        pass
+
+    def keysQuiz(self):
         pass
