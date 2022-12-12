@@ -85,17 +85,19 @@ class Keyboard:
 
     def keysLevel(self):
         for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_presses = pygame.mouse.get_pressed()
+                if mouse_presses[0]:
+                    if self.model.text.nextLine():
+                        self.model.text.pointer += 1
+                    else:
+                        self.evManager.Post(StateChangeEvent(Model.STATE_TRANSCRIPT))
             if event.type == pygame.QUIT:
                 self.evManager.Post(QuitEvent())
             # handle key down events
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.evManager.Post(QuitEvent())
-                if event.key == pygame.K_a:
-                    if self.model.text.nextLine():
-                        self.model.text.pointer += 1
-                    else:
-                        self.evManager.Post(StateChangeEvent(Model.STATE_TRANSCRIPT))
 
     def keysTranscript(self):
         pass

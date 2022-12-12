@@ -81,8 +81,8 @@ class Dialogue:
     def createTable(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS dialogue (
         id INTEGER PRIMARY KEY,
-        line1 TEXT NOT NULL,
-        line2 TEXT NOT NULL,
+        line TEXT NOT NULL,
+        line2 TEXT,
         level INTEGER NOT NULL,
         stage INTEGER NOT NULL,
         last BOOL NOT NULL
@@ -94,25 +94,25 @@ class Dialogue:
     def fillTable(self):
         self.c.execute('''INSERT INTO dialogue (line, level, stage, last) VALUES ('Hello there!', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('I am your teacher and I am going to help you master the basics of Spanish quickly and easily without the pain.', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('I am your teacher and I am going to help you master the basics of', 'Spanish quickly and easily without the pain.', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Remember that all words you are shown, whether they are just used as an example or in a list, will come up later.', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Remember that all words you are shown, whether they are just used as an', 'example or in a list, will come up later.', 1, 1, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('To start off you should understand a bit about how Spanish differs from English.', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('All articles (things like the or a), words, and adjectives can be either feminine or masculine.', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('All articles (things like the or a), words, and adjectives can be either', 'feminine or masculine.', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Generally words ending in -o are masculine and -a are feminine, but there are lots of exeptions.', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Generally words ending in -o are masculine and -a are feminine, but there are', 'lots of exeptions.', 1, 1, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('un - a (masculine), una - a (femenine), el - the (masculine), la - the (femenine)', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Another feature of Spanish is that it has accents, and they can change the meaning of a word.', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Another feature of Spanish is that it has accents, and they can change the', 'meaning of a word.', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('que - that, qué - what', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('for example: que - that, qué - what', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('The infinitive (to do, to work, to eat) of verbs in Spanish all end in -r e.g. querer - to want', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('The infinitive (to do, to work, to eat) of verbs in Spanish all end in -r e.g.', 'querer - to want', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('But they can change the person they are referring to based on their ending', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('But they can change the person they are referring to based on their ending.', 1, 1, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('quiero - I want, quieres - you want', 1, 1, 0);''')
         self.c.execute(
@@ -120,9 +120,9 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Try and follow it the best you can using the things you have been taught.', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('There will be some words you have not been shown but that are very close to English, so see if you can guess the meaning.', 1, 1, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('There will be some words you have not been shown but that are very close', 'to English, so see if you can guess the meaning.', 1, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Do not worry if you cannot this time though, because there will be an english translation to follow along if you need.', 1, 1, 1);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Do not worry if you cannot this time though, because there will be an english', 'translation to follow along if you need.', 1, 1, 1);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is some useful vocab that will come up in the following dialogue or that came up earlier.', 1, 2, 0);''')
         self.c.execute(
@@ -193,7 +193,7 @@ class Dialogue:
 
     def search(self, level, stage):
         result = []
-        for i in self.c.execute(f'''SELECT line FROM dialogue WHERE level={level} AND stage={stage}'''):
+        for i in self.c.execute(f'''SELECT line, line2 FROM dialogue WHERE level={level} AND stage={stage}'''):
             result.append(i)
         return result
 
@@ -330,7 +330,6 @@ class Transcript:
                 f'''SELECT line, transcription, last FROM transcript WHERE level={level} AND stage={stage}'''):
             result.append(i)
         return result
-
 
 # t = Transcript()
 # print(t.search(1, 1))
