@@ -36,16 +36,16 @@ class GraphicalView:
                 self.renderTitle()
             elif currentstate == Model.STATE_SETTINGS:
                 self.renderSettings()
-            elif currentstate == Model.STATE_LEVEL1:
-                self.renderLevel(1)
-            elif currentstate == Model.STATE_LEVEL2:
-                self.renderLevel(2)
+            elif currentstate == Model.STATE_LEVEL1 or currentstate == Model.STATE_LEVEL2:
+                self.renderLevel()
             elif currentstate == Model.STATE_TRANSCRIPT:
                 self.renderTranscript()
-            elif currentstate == Model.STATE_QUIZ:
+            elif currentstate == Model.STATE_QUIZ or currentstate == Model.STATE_ANOTHERQUESTION:
                 self.renderQuiz()
 
     def renderTitle(self):
+        # unpause music
+        self.model.radio.unpause()
         self.screen.blit(self.titleimage, (0, 0))
         self.model.player.draw(self.screen)
         # update volume
@@ -62,11 +62,11 @@ class GraphicalView:
         self.clock.tick(18)
         pygame.display.update()
 
-    def renderLevel(self, level):
+    def renderLevel(self):
         # pause sound
         self.model.radio.pause()
         # draw background
-        self.screen.blit(self.levelImages[level], (0, 0))
+        self.screen.blit(self.levelImages[self.model.level.level], (0, 0))
         # draw text
         self.model.text.createTextImage()
         self.model.text.draw(self.screen, 130, 625)
@@ -74,7 +74,24 @@ class GraphicalView:
         pygame.display.update()
 
     def renderTranscript(self):
-        pass
+        # sound
+        # draw background
+        self.screen.blit(self.levelImages[self.model.level.level], (0, 0))
+        # draw text
+        self.model.transcript.createTextImage()
+        self.model.transcript.draw(self.screen, 130, 625)
+        self.clock.tick(18)
+        pygame.display.update()
 
     def renderQuiz(self):
-        pass
+        # draw background
+        self.screen.blit(self.levelImages[self.model.level.level], (0, 0))
+        self.model.level.updateText(self.screen)
+        self.model.level.createText()
+        self.screen.blit(self.model.level.fontImage, (620, 500))
+        if not self.model.level.answering:
+            self.model.level.judgeAnswer(self.screen)
+            self.evManager.Post(StateChangeEvent(None))
+            # self.evManager.Post(StateChangeEvent(Model.STATE_ANOTHERQUESTION))
+        self.clock.tick(18)
+        pygame.display.update()

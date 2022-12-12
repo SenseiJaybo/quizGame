@@ -27,7 +27,7 @@ class Keyboard:
                 self.keysLevel()
             elif currentstate == Model.STATE_TRANSCRIPT:
                 self.keysTranscript()
-            elif currentstate == Model.STATE_QUIZ:
+            elif currentstate == Model.STATE_QUIZ or currentstate == Model.STATE_ANOTHERQUESTION:
                 self.keysQuiz()
             # check non state specific button presses
             for event in pygame.event.get():
@@ -87,10 +87,13 @@ class Keyboard:
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_presses = pygame.mouse.get_pressed()
+                # if left mouse button pressed
                 if mouse_presses[0]:
                     if self.model.text.nextLine():
                         self.model.text.pointer += 1
                     else:
+                        # go to transcript scene
+                        self.evManager.Post(StateChangeEvent(None))
                         self.evManager.Post(StateChangeEvent(Model.STATE_TRANSCRIPT))
             if event.type == pygame.QUIT:
                 self.evManager.Post(QuitEvent())
@@ -100,7 +103,35 @@ class Keyboard:
                     self.evManager.Post(QuitEvent())
 
     def keysTranscript(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_presses = pygame.mouse.get_pressed()
+                # if left mouse button pressed
+                if mouse_presses[0]:
+                    if self.model.transcript.nextLine():
+                        self.model.transcript.pointer += 1
+                    else:
+                        # go to quiz scene
+                        self.evManager.Post(StateChangeEvent(None))
+                        self.evManager.Post(StateChangeEvent(Model.STATE_QUIZ))
+            if event.type == pygame.QUIT:
+                self.evManager.Post(QuitEvent())
+            # handle key down events
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.evManager.Post(QuitEvent())
 
     def keysQuiz(self):
-        pass
+        # update text input
+        events = pygame.event.get()
+        self.model.level.textinput.update(events)
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            self.evManager.Post(QuitEvent())
+        # if enter answer, get another question or move on
+        if keys[pygame.K_RETURN]:
+            self.model.level.answering = False
+
+
+
+
