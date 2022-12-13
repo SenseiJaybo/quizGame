@@ -8,7 +8,7 @@ class Text:
         self.textImage = None
         self.textImage2 = None
         self.pointer = 0
-        self.dialogue = []
+        self.dialogue = None
 
     def draw(self, surface, x, y):
         # draws current rendered text image to screen
@@ -17,7 +17,7 @@ class Text:
 
     def getDialogue(self, level):
         # clear list
-        self.dialogue = []
+        self.dialogue = None
         # gets a list of dialogue for current state
         self.dialogue = level.dialogue.search(level.level, level.stage)
 

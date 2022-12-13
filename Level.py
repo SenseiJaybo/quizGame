@@ -2,7 +2,6 @@ import Databases
 import pygame_textinput
 import pygame
 import random
-import TextBox
 
 
 class Level:
@@ -23,6 +22,9 @@ class Level:
         self.textinput.font_color = (255, 255, 255)
         self.textinput.cursor_color = (255, 255, 255)
         # Quiz set up
+        self.pause = False
+        self.playerAnswerFeedback = False
+        self.right = True
         self.words = None
         self.currentQuestion = None
         self.currentWord = ''
@@ -36,14 +38,21 @@ class Level:
 
     def createText(self):
         self.fontImage = self.font.render(f'{self.currentWord}', True, (255, 255, 255), (155, 205, 151))
-        print(self.words)
-        print(self.currentWord, self.correct)
 
     def getQuestions(self):
         self.words = None
-        self.words = self.quiz.search(self.level, self.stage)
+        # self.words = (self.quiz.search(self.level, self.stage))
+        self.words = (self.quiz.search(1, 1))
+        print(self.words)
+        self.words = None
+        self.words = (self.quiz.search(1, 2))
+        print(self.words)
+        self.words = None
+        self.words = (self.quiz.search(1, 3))
+        print(self.words)
 
     def randomChoice(self):
+        # reset if all questions asked
         if len(self.indexes) == 0:
             self.indexes = [0, 1, 2, 3, 4]
             return False
@@ -57,12 +66,15 @@ class Level:
             self.correct = self.currentQuestion[1]
             return True
 
-    def judgeAnswer(self, surface):
+    def judgeAnswer(self):
         answer = self.textinput.value
         if answer.upper() == self.correct:
-            self.CorrectAnswer(surface)
+            self.right = True
         else:
-            self.NotQuite(surface)
+            self.right = False
+
+    def wait(self):
+        pygame.time.wait(50)
 
     def NotQuite(self, surface):
         notquite = self.font.render(f'{self.correct}', True, (255, 0, 0))

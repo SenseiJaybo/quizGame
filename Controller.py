@@ -131,6 +131,20 @@ class Keyboard:
         # if enter answer, get another question or move on
         if keys[pygame.K_RETURN]:
             self.model.level.answering = False
+            self.model.level.judgeAnswer()
+            self.model.level.playerAnswerFeedback = True
+        if self.model.level.pause:
+            self.model.level.wait()
+            if not self.model.level.randomChoice():
+                if self.model.level.level == 1:
+                    self.evManager.Post(StateChangeEvent(None))
+                    self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL1))
+                elif self.model.level.level == 2:
+                    self.evManager.Post(StateChangeEvent(None))
+                    self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL2))
+            else:
+                self.evManager.Post(StateChangeEvent(None))
+                self.evManager.Post(StateChangeEvent(Model.STATE_ANOTHERQUESTION))
 
 
 

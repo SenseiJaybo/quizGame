@@ -50,11 +50,8 @@ class GameEngine:
             elif event.state == STATE_ANOTHERQUESTION:
                 self.level.textinput.value = ''
                 self.level.answering = True
-                if not self.level.randomChoice():
-                    if self.level.level == 1:
-                        self.evManager.Post(StateChangeEvent(STATE_LEVEL1))
-                    elif self.level.level == 2:
-                        self.evManager.Post(StateChangeEvent(STATE_LEVEL2))
+                self.level.playerAnswerFeedback = False
+                self.level.pause = False
 
             # pop request
             if not event.state:
@@ -80,10 +77,12 @@ class GameEngine:
         # go back to title
         if self.level.stage == 3:
             self.level.stage = 0
+            self.evManager.Post(StateChangeEvent(None))
             self.evManager.Post(StateChangeEvent(STATE_TITLE))
         else:
             self.level.stage += 1
             # set up the level state
+            self.text.pointer = 0
             self.level.level = level
             self.text.getDialogue(self.level)
 

@@ -89,9 +89,11 @@ class GraphicalView:
         self.model.level.updateText(self.screen)
         self.model.level.createText()
         self.screen.blit(self.model.level.fontImage, (620, 500))
-        if not self.model.level.answering:
-            self.model.level.judgeAnswer(self.screen)
-            self.evManager.Post(StateChangeEvent(None))
-            # self.evManager.Post(StateChangeEvent(Model.STATE_ANOTHERQUESTION))
+        if self.model.level.playerAnswerFeedback and self.model.level.right:
+            self.model.level.CorrectAnswer(self.screen)
+            self.model.level.pause = True
+        elif self.model.level.playerAnswerFeedback and not self.model.level.right:
+            self.model.level.NotQuite(self.screen)
+            self.model.level.pause = True
         self.clock.tick(18)
         pygame.display.update()
