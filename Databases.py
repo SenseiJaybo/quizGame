@@ -125,15 +125,15 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Do not worry if you cannot this time though, because there will be an', 'english translation to follow along if you need.', 1, 1, 1);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Here is some useful vocab that will come up in the following dialogue or that ', 'came up earlier.', 1, 2, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Here is some useful vocab that will come up in the following dialogue or', 'that came up earlier.', 1, 2, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('hola - hello, buenos días - good day, también - also, y - and, botella - bottle', 1, 2, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('zumo - juice, agua - water, cuanto cuesta - how much does it cost?, por favor - please', 1, 2, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('zumo - juice, agua - water, cuanto cuesta - how much does it cost?, por favor -', 'please', 1, 2, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is a short dialogue.', 1, 2, 1);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Here is some useful vocab that will come up in the following dialogue or that ', 'came up earlier.', 1, 3, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Here is some useful vocab that will come up in the following dialogue or', 'that came up earlier.', 1, 3, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('vale - ok, cincuenta - 50, cinco - 5, fruta - fruit, verdura - vegetable', 1, 3, 0);''')
         self.c.execute(
@@ -145,7 +145,7 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('el zumo pequeño - the small juice, las botellas pequeñas - the small bottles', 1, 3, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('The adjective takes -a or -o if it is singular or -as or -os if it is plural apart', 'from in the case of adjectives like grande', 1, 3, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('The adjective takes -a or -o if it is singular or -as or -os if it is', 'plural apart from in the case of adjectives like grande', 1, 3, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Try and spot the pattern.', 1, 3, 0);''')
         self.c.execute(
@@ -153,7 +153,7 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('los zumos grandes - the big juices, las verdura grandes - the big vegetable', 1, 3, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('adjectives ending in -e do not change depending on gender, only get an -s in plural', 1, 3, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('adjectives ending in -e do not change depending on gender, only get an -s in', 'plural', 1, 3, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is a short dialogue.', 1, 3, 1);''')
         self.c.execute(
@@ -171,9 +171,9 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('This is a short dialogue about buying a ticket', 2, 1, 1);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('To talk about the time in Spanish we use, a la, for 1 o-clock, and, a las, for all other', 'times, followed by the number', 2, 2, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('To talk about the time in Spanish we use, a la, for 1 o-clock, and, a las,', 'for all other times, followed by the number', 2, 2, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('a las cinco - at 5 o-clock, a las dos - at 2 o-clock, a las diez - at 10 o-clock, a la una -', 'at 1 o-clock', 2, 2, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('a las cinco - at 5 o-clock, a las dos - at 2 o-clock, a las diez - at 10', 'o-clock, a la una - at 1 o-clock', 2, 2, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is some more vocab to talk about public transport;', 2, 2, 0);''')
         self.c.execute(
