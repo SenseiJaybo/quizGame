@@ -31,6 +31,8 @@ class GameEngine:
         self.text = Text()
         # init transcript
         self.transcript = Transcript()
+        # index for audio files
+        self.index = 0
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -76,6 +78,11 @@ class GameEngine:
             self.evManager.Post(newTick)
 
     def setupStage(self, level):
+        if self.level.stage == 0:
+            if level == 1:
+                self.index = 0
+            elif level == 2:
+                self.index = 29
         self.level.stage += 1
         # set up the level state
         self.text.pointer = 0
@@ -98,7 +105,7 @@ STATE_LEVEL2 = 4
 STATE_TRANSCRIPT = 5
 STATE_QUIZ = 6
 STATE_ANOTHERQUESTION = 7
-STATE_LEVELFINISH = 8
+
 
 
 class StateMachine:

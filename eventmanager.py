@@ -39,6 +39,12 @@ class StateChangeEvent(Event):
             return '%s popped' % (self.name,)
 
 
+class AudioEvent(Event):
+
+    def __init__(self):
+        self.name = "Audio event"
+
+
 class EventManager:
 
     def __init__(self):

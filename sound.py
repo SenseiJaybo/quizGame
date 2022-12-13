@@ -6,6 +6,10 @@ class Sound:
         # sound mixer
         pygame.mixer.init()
         pygame.mixer.music.load('2024_Sound_Of_The_Summer.mp3')
+        # audio for listening section
+        self.audio = []
+        for i in range(1, 52):
+            self.audio.append(pygame.mixer.Sound(f'Audio files/{i}.wav'))
 
     def pause(self):
         pygame.mixer.music.pause()

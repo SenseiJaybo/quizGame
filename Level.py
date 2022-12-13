@@ -31,6 +31,8 @@ class Level:
         self.correct = ''
         self.answering = True
         self.indexes = [0, 1, 2, 3, 4]
+        # word placement vars
+        self.X = 768
 
     def updateText(self, surface):
         if self.answering:
@@ -66,12 +68,13 @@ class Level:
             self.right = False
 
     def wait(self):
+        # 5 seconds
         pygame.time.wait(5000)
 
     def NotQuite(self, surface):
-        notquite = self.font.render(f'{self.correct}', True, (255, 0, 0))
-        surface.blit(notquite, (500, 100))
+        notquite = self.font.render(f'{self.correct.lower()}', True, (255, 0, 0))
+        surface.blit(notquite, (self.X - (notquite.get_width() / 2), 300))
 
     def CorrectAnswer(self, surface):
         correct = self.font.render('correct!', True, (0, 255, 0))
-        surface.blit(correct, (500, 100))
+        surface.blit(correct, (620, 300))

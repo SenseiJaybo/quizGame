@@ -30,6 +30,9 @@ class GraphicalView:
         if isinstance(event, QuitEvent):
             # shut down the pygame graphics
             quit()
+        elif isinstance(event, AudioEvent):
+            pygame.mixer.Sound.play(self.model.radio.audio[self.model.index])
+            self.model.index += 1
         elif isinstance(event, TickEvent):
             currentstate = self.model.state.peek()
             if currentstate == Model.STATE_TITLE:
@@ -89,7 +92,8 @@ class GraphicalView:
         # update text input
         self.model.level.updateText(self.screen)
         self.model.level.createText()
-        self.screen.blit(self.model.level.fontImage, (620, 500))
+        self.screen.blit(self.model.level.fontImage,
+                         (self.model.level.X - (self.model.level.fontImage.get_width() / 2), 500))
         # display feedback
         if self.model.level.playerAnswerFeedback and self.model.level.right:
             self.model.level.CorrectAnswer(self.screen)

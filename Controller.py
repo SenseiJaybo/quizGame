@@ -95,6 +95,7 @@ class Keyboard:
                         # go to transcript scene
                         self.evManager.Post(StateChangeEvent(None))
                         self.evManager.Post(StateChangeEvent(Model.STATE_TRANSCRIPT))
+                        self.evManager.Post(AudioEvent())
             if event.type == pygame.QUIT:
                 self.evManager.Post(QuitEvent())
             # handle key down events
@@ -109,6 +110,7 @@ class Keyboard:
                 # if left mouse button pressed
                 if mouse_presses[0]:
                     if self.model.transcript.nextLine():
+                        self.evManager.Post(AudioEvent())
                         self.model.transcript.pointer += 1
                     else:
                         # go to quiz scene
@@ -150,8 +152,8 @@ class Keyboard:
                     if self.model.level.stage >= 3:
                         # if last stage
                         self.evManager.Post(StateChangeEvent(Model.STATE_TITLE))
-                        # if not last stage
                     else:
+                        # if not last stage
                         self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL2))
             else:
                 # another question
