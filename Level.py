@@ -66,7 +66,7 @@ class Level:
             self.right = False
 
     def wait(self):
-        pygame.time.wait(50)
+        pygame.time.wait(5000)
 
     def NotQuite(self, surface):
         notquite = self.font.render(f'{self.correct}', True, (255, 0, 0))
