@@ -135,14 +135,26 @@ class Keyboard:
             self.model.level.playerAnswerFeedback = True
         if self.model.level.pause:
             self.model.level.wait()
+            # handle amount of answers
             if not self.model.level.randomChoice():
                 if self.model.level.level == 1:
                     self.evManager.Post(StateChangeEvent(None))
-                    self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL1))
+                    if self.model.level.stage >= 3:
+                        # if last stage
+                        self.evManager.Post(StateChangeEvent(Model.STATE_TITLE))
+                    else:
+                        # if not last stage
+                        self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL1))
                 elif self.model.level.level == 2:
                     self.evManager.Post(StateChangeEvent(None))
-                    self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL2))
+                    if self.model.level.stage >= 3:
+                        # if last stage
+                        self.evManager.Post(StateChangeEvent(Model.STATE_TITLE))
+                        # if not last stage
+                    else:
+                        self.evManager.Post(StateChangeEvent(Model.STATE_LEVEL2))
             else:
+                # another question
                 self.evManager.Post(StateChangeEvent(None))
                 self.evManager.Post(StateChangeEvent(Model.STATE_ANOTHERQUESTION))
 

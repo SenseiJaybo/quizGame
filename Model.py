@@ -38,26 +38,28 @@ class GameEngine:
         if isinstance(event, QuitEvent):
             self.running = False
         if isinstance(event, StateChangeEvent):
-            if event.state == STATE_LEVEL1:
+            if event.state == STATE_TITLE:
+                # reset stage
+                self.level.stage = 0
+            elif event.state == STATE_LEVEL1:
                 self.setupStage(1)
             elif event.state == STATE_LEVEL2:
                 self.setupStage(2)
             elif event.state == STATE_TRANSCRIPT:
                 self.transcript.getDialogue(self.level)
             elif event.state == STATE_QUIZ:
+                # init quiz
                 self.level.getQuestions()
                 self.level.randomChoice()
+                self.resetQuizValues()
             elif event.state == STATE_ANOTHERQUESTION:
-                self.level.textinput.value = ''
-                self.level.answering = True
-                self.level.playerAnswerFeedback = False
-                self.level.pause = False
+                self.resetQuizValues()
 
             # pop request
             if not event.state:
                 # false if no more states are left
                 if not self.state.pop():
-                    self.evManager.Post(QuitEvent())
+                    pass
             else:
                 # push a new state on the stack
                 self.state.push(event.state)
@@ -74,17 +76,18 @@ class GameEngine:
             self.evManager.Post(newTick)
 
     def setupStage(self, level):
-        # go back to title
-        if self.level.stage == 3:
-            self.level.stage = 0
-            self.evManager.Post(StateChangeEvent(None))
-            self.evManager.Post(StateChangeEvent(STATE_TITLE))
-        else:
-            self.level.stage += 1
-            # set up the level state
-            self.text.pointer = 0
-            self.level.level = level
-            self.text.getDialogue(self.level)
+        self.level.stage += 1
+        # set up the level state
+        self.text.pointer = 0
+        self.transcript.pointer = 0
+        self.level.level = level
+        self.text.getDialogue(self.level)
+
+    def resetQuizValues(self):
+        self.level.textinput.value = ''
+        self.level.answering = True
+        self.level.playerAnswerFeedback = False
+        self.level.pause = False
 
 
 # State machine constants
@@ -95,6 +98,7 @@ STATE_LEVEL2 = 4
 STATE_TRANSCRIPT = 5
 STATE_QUIZ = 6
 STATE_ANOTHERQUESTION = 7
+STATE_LEVELFINISH = 8
 
 
 class StateMachine:

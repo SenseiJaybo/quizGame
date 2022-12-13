@@ -86,9 +86,11 @@ class GraphicalView:
     def renderQuiz(self):
         # draw background
         self.screen.blit(self.levelImagesNoMan[self.model.level.level], (0, 0))
+        # update text input
         self.model.level.updateText(self.screen)
         self.model.level.createText()
         self.screen.blit(self.model.level.fontImage, (620, 500))
+        # display feedback
         if self.model.level.playerAnswerFeedback and self.model.level.right:
             self.model.level.CorrectAnswer(self.screen)
             self.model.level.pause = True

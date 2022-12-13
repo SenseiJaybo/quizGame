@@ -41,15 +41,7 @@ class Level:
 
     def getQuestions(self):
         self.words = None
-        # self.words = (self.quiz.search(self.level, self.stage))
-        self.words = (self.quiz.search(1, 1))
-        print(self.words)
-        self.words = None
-        self.words = (self.quiz.search(1, 2))
-        print(self.words)
-        self.words = None
-        self.words = (self.quiz.search(1, 3))
-        print(self.words)
+        self.words = (self.quiz.search(self.level, self.stage))
 
     def randomChoice(self):
         # reset if all questions asked

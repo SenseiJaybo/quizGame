@@ -62,6 +62,7 @@ class QuizQuestions:
         self.conn.commit()
 
     def search(self, level, stage):
+        self.clearSearch()
         for i in self.c.execute(f'''SELECT question, answer FROM tasks WHERE level={level} AND stage={stage}'''):
             self.currentList.append(i)
         return self.currentList
@@ -327,7 +328,7 @@ class Transcript:
     def search(self, level, stage):
         result = []
         for i in self.c.execute(
-                f'''SELECT line, transcription, last FROM transcript WHERE level={level} AND stage={stage}'''):
+                f'''SELECT line, transcription FROM transcript WHERE level={level} AND stage={stage}'''):
             result.append(i)
         return result
 
