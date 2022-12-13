@@ -159,7 +159,3 @@ class Keyboard:
                 # another question
                 self.evManager.Post(StateChangeEvent(None))
                 self.evManager.Post(StateChangeEvent(Model.STATE_ANOTHERQUESTION))
-
-
-
-

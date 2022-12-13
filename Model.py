@@ -107,7 +107,6 @@ STATE_QUIZ = 6
 STATE_ANOTHERQUESTION = 7
 
 
-
 class StateMachine:
     def __init__(self):
         self.statestack = []
