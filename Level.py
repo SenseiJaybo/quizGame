@@ -17,7 +17,7 @@ class Level:
         self.font = pygame.font.Font('freesansbold.ttf', 80)
         self.fontImage = None
         # text input set up
-        self.manager = pygame_textinput.TextInputManager(validator=lambda i: len(i) <= 25)
+        self.manager = pygame_textinput.TextInputManager(validator=lambda i: len(i) <= 20)
         self.textinput = pygame_textinput.TextInputVisualizer(manager=self.manager)
         self.textinput.font_color = (255, 255, 255)
         self.textinput.cursor_color = (255, 255, 255)
@@ -68,8 +68,8 @@ class Level:
             self.right = False
 
     def wait(self):
-        # 5 seconds
-        pygame.time.wait(5000)
+        # 4.5 seconds
+        pygame.time.wait(4500)
 
     def NotQuite(self, surface):
         notquite = self.font.render(f'{self.correct.lower()}', True, (255, 0, 0))

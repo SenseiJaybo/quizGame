@@ -15,7 +15,7 @@ class GraphicalView:
         pygame.init()
         pygame.display.set_caption('Spain without the pain')
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        pygame.key.set_repeat(200, 20)
+        pygame.key.set_repeat(300, 20)
         self.clock = pygame.time.Clock()
         # title image
         self.titleimage = pygame.image.load('Title screen.png')
@@ -31,19 +31,21 @@ class GraphicalView:
             # shut down the pygame graphics
             quit()
         elif isinstance(event, AudioEvent):
+            # pause previous sound and then play next one
+            pygame.mixer.Sound.stop(self.model.radio.audio[self.model.index - 1])
             pygame.mixer.Sound.play(self.model.radio.audio[self.model.index])
             self.model.index += 1
         elif isinstance(event, TickEvent):
-            currentstate = self.model.state.peek()
-            if currentstate == Model.STATE_TITLE:
+            currentState = self.model.state.peek()
+            if currentState == Model.STATE_TITLE:
                 self.renderTitle()
-            elif currentstate == Model.STATE_SETTINGS:
+            elif currentState == Model.STATE_SETTINGS:
                 self.renderSettings()
-            elif currentstate == Model.STATE_LEVEL1 or currentstate == Model.STATE_LEVEL2:
+            elif currentState == Model.STATE_LEVEL1 or currentState == Model.STATE_LEVEL2:
                 self.renderLevel()
-            elif currentstate == Model.STATE_TRANSCRIPT:
+            elif currentState == Model.STATE_TRANSCRIPT:
                 self.renderTranscript()
-            elif currentstate == Model.STATE_QUIZ or currentstate == Model.STATE_ANOTHERQUESTION:
+            elif currentState == Model.STATE_QUIZ or currentState == Model.STATE_ANOTHERQUESTION:
                 self.renderQuiz()
 
     def renderTitle(self):
@@ -96,9 +98,11 @@ class GraphicalView:
                          (self.model.level.X - (self.model.level.fontImage.get_width() / 2), 500))
         # display feedback
         if self.model.level.playerAnswerFeedback and self.model.level.right:
+            # right
             self.model.level.CorrectAnswer(self.screen)
             self.model.level.pause = True
         elif self.model.level.playerAnswerFeedback and not self.model.level.right:
+            # wrong
             self.model.level.NotQuite(self.screen)
             self.model.level.pause = True
         self.clock.tick(18)
