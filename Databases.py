@@ -129,7 +129,7 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('hola - hello, buenos días - good day, también - also, y - and, botella - bottle', 1, 2, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('zumo - juice, agua - water, cuanto cuesta - how much does it cost?, por favor -', 'please', 1, 2, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('zumo - juice, agua - water, cuanto cuesta - how much does it cost, por favor -', 'please', 1, 2, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is a short dialogue.', 1, 2, 1);''')
         self.c.execute(
