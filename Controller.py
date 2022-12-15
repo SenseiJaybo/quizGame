@@ -108,6 +108,8 @@ class Keyboard:
                 if event.key == pygame.K_ESCAPE:
                     self.evManager.Post(QuitEvent())
                 # progress through audio and transcript
+                if event.key == pygame.K_r:
+                    self.evManager.Post(AudioReplayEvent())
                 if event.key == pygame.K_SPACE:
                     if self.model.transcript.nextLine():
                         self.evManager.Post(AudioEvent())

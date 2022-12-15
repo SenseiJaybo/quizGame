@@ -22,8 +22,10 @@ class GraphicalView:
         # settings image
         self.settingsimage = pygame.image.load('Settings.png')
         # level images
-        self.levelImages = [1, pygame.image.load('Supermarket man.png'), pygame.image.load('Trains man.png')]
-        self.levelImagesNoMan = [1, pygame.image.load('Supermarket no man.png'), pygame.image.load('Trains no man.png')]
+        self.levelImagesTranscript = [1, pygame.image.load('Supermarket transcript.png'),
+                                      pygame.image.load('Trains transcript.png')]
+        self.levelImagesDialogue = [1, pygame.image.load('Supermarket man.png'),
+                                    pygame.image.load('Trains man.png')]
         self.levelImagesQuiz = [1, pygame.image.load('Supermarket Quiz.png'), pygame.image.load('Trains Quiz.png')]
 
     # Receive events posted to the message queue.
@@ -36,6 +38,9 @@ class GraphicalView:
             pygame.mixer.Sound.stop(self.model.radio.audio[self.model.index - 1])
             pygame.mixer.Sound.play(self.model.radio.audio[self.model.index])
             self.model.index += 1
+        elif isinstance(event, AudioReplayEvent):
+            pygame.mixer.Sound.stop(self.model.radio.audio[self.model.index - 1])
+            pygame.mixer.Sound.play(self.model.radio.audio[self.model.index - 1])
         elif isinstance(event, TickEvent):
             currentState = self.model.state.peek()
             if currentState == Model.STATE_TITLE:
@@ -72,7 +77,7 @@ class GraphicalView:
         # pause sound
         self.model.radio.pause()
         # draw background
-        self.screen.blit(self.levelImages[self.model.level.level], (0, 0))
+        self.screen.blit(self.levelImagesDialogue[self.model.level.level], (0, 0))
         # draw text
         self.model.text.createTextImage()
         self.model.text.draw(self.screen, 130, 625)
@@ -80,9 +85,8 @@ class GraphicalView:
         pygame.display.update()
 
     def renderTranscript(self):
-        # sound
         # draw background
-        self.screen.blit(self.levelImagesNoMan[self.model.level.level], (0, 0))
+        self.screen.blit(self.levelImagesTranscript[self.model.level.level], (0, 0))
         # draw text
         self.model.transcript.createTextImage()
         self.model.transcript.draw(self.screen, 130, 625)

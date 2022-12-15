@@ -9,25 +9,26 @@ class Event:
 
 
 class QuitEvent(Event):
-
     def __init__(self):
         self.name = "Quit event"
 
 
 class TickEvent(Event):
-
     def __init__(self):
         self.name = "Tick event"
 
 
 class InitializeEvent(Event):
-
     def __init__(self):
         self.name = "Initialize event"
 
 
-class StateChangeEvent(Event):
+class AudioReplayEvent(Event):
+    def __init__(self):
+        self.name = "Replay Audio event"
 
+
+class StateChangeEvent(Event):
     def __init__(self, state):
         self.name = "State change event"
         self.state = state
@@ -40,7 +41,6 @@ class StateChangeEvent(Event):
 
 
 class AudioEvent(Event):
-
     def __init__(self):
         self.name = "Audio event"
 
