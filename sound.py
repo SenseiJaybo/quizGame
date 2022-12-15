@@ -7,6 +7,7 @@ class Sound:
         pygame.mixer.init()
         pygame.mixer.music.load('2024_Sound_Of_The_Summer.mp3')
         # audio for listening section
+        self.feedbackSounds = [pygame.mixer.Sound('Success.mp3'), pygame.mixer.Sound('Fail.mp3')]
         self.audio = []
         for i in range(1, 52):
             self.audio.append(pygame.mixer.Sound(f'Audio files/{i}.wav'))
@@ -20,4 +21,6 @@ class Sound:
     def setVolume(self, volume):
         pygame.mixer.music.set_volume(volume)
         for i in self.audio:
+            i.set_volume(volume)
+        for i in self.feedbackSounds:
             i.set_volume(volume)

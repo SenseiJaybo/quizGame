@@ -105,10 +105,12 @@ class GraphicalView:
         if self.model.level.playerAnswerFeedback and self.model.level.right:
             # right
             self.model.level.CorrectAnswer(self.screen)
+            pygame.mixer.Sound.play(self.model.radio.feedbackSounds[0])
             self.model.level.pause = True
         elif self.model.level.playerAnswerFeedback and not self.model.level.right:
             # wrong
             self.model.level.NotQuite(self.screen)
+            pygame.mixer.Sound.play(self.model.radio.feedbackSounds[1])
             self.model.level.pause = True
         self.clock.tick(18)
         pygame.display.update()
