@@ -33,29 +33,32 @@ class QuizQuestions:
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Botella', 'BOTTLE', 1, 2);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Zumo', 'JUICE', 1, 2);''')
         self.c.execute(
-            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('Cuanto cuesta', 'HOW MUCH DOES IT COST', 1, 2);''')
+            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('Cuanto cuesta', 'HOW MUCH DOES IT COST, HOW MUCH IS IT', 1, 2);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Por favor', 'PLEASE', 1, 2);''')
-        self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('También', 'ALSO', 1, 2);''')
+        self.c.execute(
+            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('También', 'ALSO, AS WELL', 1, 2);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Carne', 'MEAT', 1, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Verdura', 'VEGETABLE', 1, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Sí', 'YES', 1, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Grande', 'BIG', 1, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Pequeño', 'SMALL', 1, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Billete', 'TICKET', 2, 1);''')
-        self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Comprar', 'BUY', 2, 1);''')
+        self.c.execute(
+            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('Comprar', 'BUY, TO BUY', 2, 1);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Tren', 'TRAIN', 2, 1);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Autobus', 'BUS', 2, 1);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Puedo', 'I CAN', 2, 1);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Hora', 'HOUR', 2, 2);''')
-        self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Sale', 'IT LEAVES', 2, 2);''')
-        self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Decir', 'TELL', 2, 2);''')
+        self.c.execute(
+            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('Sale', 'IT LEAVES, LEAVES', 2, 2);''')
+        self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Decir', 'TELL, SAY', 2, 2);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Próximo', 'NEXT', 2, 2);''')
         self.c.execute(
             '''INSERT INTO tasks (question, answer, level, stage) VALUES ('Pagar en efectivo', 'PAY IN CASH', 2, 2);''')
         self.c.execute(
             '''INSERT INTO tasks (question, answer, level, stage) VALUES ('Lleva un retraso', 'IT IS DELAYED', 2, 3);''')
         self.c.execute(
-            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('De ida y vuelta', 'ROUND TRIP', 2, 3);''')
+            '''INSERT INTO tasks (question, answer, level, stage) VALUES ('De ida y vuelta', 'ROUND TRIP, RETURN TICKET', 2, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Vía', 'PLATFORM', 2, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Pero', 'BUT', 2, 3);''')
         self.c.execute('''INSERT INTO tasks (question, answer, level, stage) VALUES ('Señor', 'SIR', 2, 3);''')

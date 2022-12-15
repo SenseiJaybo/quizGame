@@ -61,8 +61,9 @@ class Level:
             return True
 
     def judgeAnswer(self):
-        answer = self.textinput.value
-        if answer.upper() == self.correct:
+        solutions = self.correct.split(', ')
+        answer = self.textinput.value.strip()
+        if answer.upper() in solutions:
             self.right = True
         else:
             self.right = False
