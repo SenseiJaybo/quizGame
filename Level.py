@@ -17,7 +17,7 @@ class Level:
         self.font = pygame.font.Font('freesansbold.ttf', 80)
         self.fontImage = None
         # text input set up
-        self.manager = pygame_textinput.TextInputManager(validator=lambda i: len(i) <= 20)
+        self.manager = pygame_textinput.TextInputManager(validator=lambda i: len(i) <= 21)
         self.textinput = pygame_textinput.TextInputVisualizer(manager=self.manager)
         self.textinput.font_color = (255, 255, 255)
         self.textinput.cursor_color = (255, 255, 255)

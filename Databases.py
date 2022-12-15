@@ -151,9 +151,9 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('el zumo grande - the big juice, la verdura grande - the big vegetable', 1, 3, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('los zumos grandes - the big juices, las verdura grandes - the big vegetable', 1, 3, 0);''')
+            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('los zumos grandes - the big juices, las verduras grandes - the big vegetables', 1, 3, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('adjectives ending in -e do not change depending on gender, only get an -s in', 'plural', 1, 3, 0);''')
+            '''INSERT INTO dialogue (line, line2, level, stage, last) VALUES ('Adjectives ending in -e do not change depending on gender, only get an -s in', 'plural', 1, 3, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is a short dialogue.', 1, 3, 1);''')
         self.c.execute(
@@ -161,7 +161,7 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('a - to / at, para - to / in order to', 2, 1, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('As well as querer anothe useful verb is poder;', 2, 1, 0);''')
+            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('As well as querer another useful verb is poder;', 2, 1, 0);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('puedo - i can, puedes - you can', 2, 1, 0);''')
         self.c.execute(
@@ -181,7 +181,7 @@ class Dialogue:
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('decir - tell, próximo - next, pagar en efectivo - pay in cash', 2, 2, 0);''')
         self.c.execute(
-            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is a diologue using the vocab you just learnt;', 2, 2, 1);''')
+            '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is a dialogue using the vocab you just learnt;', 2, 2, 1);''')
         self.c.execute(
             '''INSERT INTO dialogue (line, level, stage, last) VALUES ('Here is some very useful vocab about transport;', 2, 3, 0);''')
         self.c.execute(
