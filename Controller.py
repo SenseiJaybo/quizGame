@@ -85,10 +85,12 @@ class Keyboard:
 
     def keysLevel(self):
         for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_presses = pygame.mouse.get_pressed()
-                # if left mouse button pressed
-                if mouse_presses[0]:
+            # handle key down events
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.evManager.Post(QuitEvent())
+                # progress through dialogue
+                if event.key == pygame.K_SPACE:
                     if self.model.text.nextLine():
                         self.model.text.pointer += 1
                     else:
@@ -98,17 +100,15 @@ class Keyboard:
                         self.evManager.Post(AudioEvent())
             if event.type == pygame.QUIT:
                 self.evManager.Post(QuitEvent())
+
+    def keysTranscript(self):
+        for event in pygame.event.get():
             # handle key down events
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.evManager.Post(QuitEvent())
-
-    def keysTranscript(self):
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_presses = pygame.mouse.get_pressed()
-                # if left mouse button pressed
-                if mouse_presses[0]:
+                # progress through audio and transcript
+                if event.key == pygame.K_SPACE:
                     if self.model.transcript.nextLine():
                         self.evManager.Post(AudioEvent())
                         self.model.transcript.pointer += 1
@@ -118,10 +118,6 @@ class Keyboard:
                         self.evManager.Post(StateChangeEvent(Model.STATE_QUIZ))
             if event.type == pygame.QUIT:
                 self.evManager.Post(QuitEvent())
-            # handle key down events
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    self.evManager.Post(QuitEvent())
 
     def keysQuiz(self):
         # update text input

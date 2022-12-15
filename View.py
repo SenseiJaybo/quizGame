@@ -24,6 +24,7 @@ class GraphicalView:
         # level images
         self.levelImages = [1, pygame.image.load('Supermarket man.png'), pygame.image.load('Trains man.png')]
         self.levelImagesNoMan = [1, pygame.image.load('Supermarket no man.png'), pygame.image.load('Trains no man.png')]
+        self.levelImagesQuiz = [1, pygame.image.load('Supermarket Quiz.png'), pygame.image.load('Trains Quiz.png')]
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -90,7 +91,7 @@ class GraphicalView:
 
     def renderQuiz(self):
         # draw background
-        self.screen.blit(self.levelImagesNoMan[self.model.level.level], (0, 0))
+        self.screen.blit(self.levelImagesQuiz[self.model.level.level], (0, 0))
         # update text input
         self.model.level.updateText(self.screen)
         self.model.level.createText()

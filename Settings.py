@@ -12,7 +12,7 @@ class Slider(Button):
         self.lowerBound = -262
         # furthest right position minus the width of the knob
         self.upperBound = 440
-        self._volume = 0.3
+        self._volume = 0.6
         self.range = self.upperBound - self.lowerBound
         # set collision
         self.rect.update((445, 325), (635, 90))
