@@ -45,11 +45,6 @@ class AudioEvent(Event):
         self.name = "Audio event"
 
 
-class playerAnswerFeedback(Event):
-    def __init__(self):
-        self.name = "Player answer feedback event"
-
-
 class EventManager:
 
     def __init__(self):
