@@ -1,5 +1,5 @@
 import pygame.key
-from Sprite import Sprite
+from Classes.Sprite import Sprite
 
 
 class Button(Sprite):
@@ -10,12 +10,12 @@ class Button(Sprite):
         self.isPressed = False
 
     # check collision
-    def clicked(self, playerRect):
+    def clicked(self, player):
         self.isPressed = False
         # get keyboard input
         keys = pygame.key.get_pressed()
         # do something if the player is on button and pressing space
-        if self.rect.colliderect(playerRect):
+        if self.rect.colliderect(player.rect):
             if keys[pygame.K_SPACE]:
                 self.isPressed = True
 

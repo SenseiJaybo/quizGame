@@ -45,6 +45,11 @@ class AudioEvent(Event):
         self.name = "Audio event"
 
 
+class playerAnswerFeedback(Event):
+    def __init__(self):
+        self.name = "Player answer feedback event"
+
+
 class EventManager:
 
     def __init__(self):
@@ -60,5 +65,6 @@ class EventManager:
         if not isinstance(event, TickEvent):
             # print the event (unless it is TickEvent)
             print(str(event))
+        # send message to MVC
         for listener in self.listeners.keys():
             listener.notify(event)

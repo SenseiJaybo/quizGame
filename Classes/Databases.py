@@ -4,13 +4,12 @@ import sqlite3 as sq
 class QuizQuestions:
     def __init__(self):
         # connect to database file
-        self.conn = sq.connect('database.db')
+        self.conn = sq.connect('../database.db')
         self.c = self.conn.cursor()
         # init table
         self.createTable()
         self.clearTable()
         self.fillTable()
-        self.currentList = []
 
     def createTable(self):
         self.c.execute('''CREATE TABLE IF NOT EXISTS tasks (
@@ -65,18 +64,15 @@ class QuizQuestions:
         self.conn.commit()
 
     def search(self, level, stage):
-        self.clearSearch()
+        result = []
         for i in self.c.execute(f'''SELECT question, answer FROM tasks WHERE level={level} AND stage={stage}'''):
-            self.currentList.append(i)
-        return self.currentList
-
-    def clearSearch(self):
-        self.currentList = []
+            result.append(i)
+        return result
 
 
 class Dialogue:
     def __init__(self):
-        self.conn = sq.connect('database.db')
+        self.conn = sq.connect('../database.db')
         self.c = self.conn.cursor()
         self.createTable()
         self.clearTable()
@@ -204,7 +200,7 @@ class Dialogue:
 
 class Transcript:
     def __init__(self):
-        self.conn = sq.connect('database.db')
+        self.conn = sq.connect('../database.db')
         self.c = self.conn.cursor()
         self.createTable()
         self.clearTable()

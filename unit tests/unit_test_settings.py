@@ -1,5 +1,5 @@
 import unittest
-from Settings import Slider
+from Classes.Settings import Slider
 
 
 class VolumeSettingsTestCase(unittest.TestCase):

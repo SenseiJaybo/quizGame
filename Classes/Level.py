@@ -1,7 +1,7 @@
-import Databases
 import pygame_textinput
 import pygame
 import random
+from Classes import Databases
 
 
 class Level:
@@ -32,7 +32,7 @@ class Level:
         self.answering = True
         self.indexes = [0, 1, 2, 3, 4]
         # word placement vars
-        self.X = 768
+        self.midpoint = 768
 
     def updateText(self, surface):
         if self.answering:
@@ -61,8 +61,10 @@ class Level:
             return True
 
     def judgeAnswer(self):
+        # format answer
         solutions = self.correct.split(', ')
         answer = self.textinput.value.strip()
+        # compare answer
         if answer.upper() in solutions:
             self.right = True
         else:
@@ -74,7 +76,7 @@ class Level:
 
     def NotQuite(self, surface):
         notquite = self.font.render(f'{self.correct.lower()}', True, (255, 0, 0))
-        surface.blit(notquite, (self.X - (notquite.get_width() / 2), 300))
+        surface.blit(notquite, (self.midpoint - (notquite.get_width() / 2), 300))
 
     def CorrectAnswer(self, surface):
         correct = self.font.render('correct!', True, (0, 255, 0))

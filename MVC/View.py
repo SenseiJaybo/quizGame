@@ -1,6 +1,6 @@
 import pygame
-import Model
-from eventmanager import *
+from MVC import Model
+from MVC.eventmanager import *
 
 
 class GraphicalView:
@@ -18,15 +18,16 @@ class GraphicalView:
         pygame.key.set_repeat(300, 20)
         self.clock = pygame.time.Clock()
         # title image
-        self.titleimage = pygame.image.load('Title screen.png')
+        self.titleimage = pygame.image.load('backgrounds/Title screen.png')
         # settings image
-        self.settingsimage = pygame.image.load('Settings.png')
+        self.settingsimage = pygame.image.load('backgrounds/Settings.png')
         # level images
-        self.levelImagesTranscript = [1, pygame.image.load('Supermarket transcript.png'),
-                                      pygame.image.load('Trains transcript.png')]
-        self.levelImagesDialogue = [1, pygame.image.load('Supermarket man.png'),
-                                    pygame.image.load('Trains man.png')]
-        self.levelImagesQuiz = [1, pygame.image.load('Supermarket Quiz.png'), pygame.image.load('Trains Quiz.png')]
+        self.levelImagesTranscript = [1, pygame.image.load('backgrounds/Supermarket transcript.png'),
+                                      pygame.image.load('backgrounds/Trains transcript.png')]
+        self.levelImagesDialogue = [1, pygame.image.load('backgrounds/Supermarket man.png'),
+                                    pygame.image.load('backgrounds/Trains man.png')]
+        self.levelImagesQuiz = [1, pygame.image.load('backgrounds/Supermarket Quiz.png'), pygame.image.load(
+            'backgrounds/Trains Quiz.png')]
 
     # Receive events posted to the message queue.
     def notify(self, event):
@@ -57,19 +58,27 @@ class GraphicalView:
     def renderTitle(self):
         # unpause music
         self.model.radio.unpause()
+        # draw background
         self.screen.blit(self.titleimage, (0, 0))
+        # player
+        self.model.player.borderCollision(self.screen)
         self.model.player.draw(self.screen)
         # update volume
         self.model.radio.setVolume(self.model.settingsbuttons[1].volume)
+        # update screen
         self.clock.tick(18)
         pygame.display.update()
 
     def renderSettings(self):
+        # draw background
         self.screen.blit(self.settingsimage, (0, 0))
         self.model.settingsbuttons[1].draw(self.screen)
+        # player
+        self.model.player.borderCollision(self.screen)
         self.model.player.draw(self.screen)
         # update volume
         self.model.radio.setVolume(self.model.settingsbuttons[1].volume)
+        # update screen
         self.clock.tick(18)
         pygame.display.update()
 
@@ -100,7 +109,7 @@ class GraphicalView:
         self.model.level.updateText(self.screen)
         self.model.level.createText()
         self.screen.blit(self.model.level.fontImage,
-                         (self.model.level.X - (self.model.level.fontImage.get_width() / 2), 500))
+                         (self.model.level.midpoint - (self.model.level.fontImage.get_width() / 2), 500))
         # display feedback
         if self.model.level.playerAnswerFeedback and self.model.level.right:
             # right

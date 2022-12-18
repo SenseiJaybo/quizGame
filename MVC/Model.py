@@ -1,12 +1,10 @@
 import pygame
-from eventmanager import *
-from Player import Player
-from Settings import settingsbuttons
-from Title import titlebuttons
-from sound import Sound
-from Level import Level
-from TextBox import Text
-from Transcript import Transcript
+from MVC.eventmanager import *
+from Classes.Player import Player
+from Classes.Settings import settingsbuttons, titlebuttons
+from Classes.sound import Sound
+from Classes.Level import Level
+from Classes.TextBox import Text
 
 
 class GameEngine:
@@ -30,7 +28,7 @@ class GameEngine:
         # init text class
         self.text = Text()
         # init transcript
-        self.transcript = Transcript()
+        self.transcript = Text()
         # index for audio files
         self.index = 0
 
@@ -48,7 +46,7 @@ class GameEngine:
             elif event.state == STATE_LEVEL2:
                 self.setupStage(2)
             elif event.state == STATE_TRANSCRIPT:
-                self.transcript.getDialogue(self.level)
+                self.transcript.getDialogue(self.level, 'transcript')
             elif event.state == STATE_QUIZ:
                 # init quiz
                 self.level.getQuestions()
@@ -88,7 +86,7 @@ class GameEngine:
         self.text.pointer = 0
         self.transcript.pointer = 0
         self.level.level = level
-        self.text.getDialogue(self.level)
+        self.text.getDialogue(self.level, 'dialogue')
 
     def resetQuizValues(self):
         self.level.textinput.value = ''

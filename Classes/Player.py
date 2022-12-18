@@ -1,8 +1,4 @@
-import pygame
-from Sprite import *
-from Game_class import *
-
-m = Game()
+from Classes.Sprite import *
 
 
 class Player(Sprite):
@@ -13,23 +9,29 @@ class Player(Sprite):
         self.scale = scale
         self.speed = 13
         # load images for the walk cycles
-        self.walkRight = [pygame.image.load('adventurer-run-00.png'), pygame.image.load('adventurer-run-01.png'),
-                          pygame.image.load('adventurer-run-02.png'), pygame.image.load('adventurer-run-03.png'),
-                          pygame.image.load('adventurer-run-04.png'), pygame.image.load('adventurer-run-05.png')]
+        self.walkRight = [pygame.image.load('Sprites/adventurer-run-00.png'), pygame.image.load(
+            'Sprites/adventurer-run-01.png'),
+                          pygame.image.load('Sprites/adventurer-run-02.png'), pygame.image.load(
+                'Sprites/adventurer-run-03.png'),
+                          pygame.image.load('Sprites/adventurer-run-04.png'), pygame.image.load(
+                'Sprites/adventurer-run-05.png')]
         # scale images
         for i, v in enumerate(self.walkRight):
             self.walkRight[i] = pygame.transform.scale(v, (v.get_width() * scale, v.get_height() * scale))
 
-        self.walkLeft = [pygame.image.load('adventurer-run-00L.png'), pygame.image.load('adventurer-run-01L.png'),
-                         pygame.image.load('adventurer-run-02L.png'), pygame.image.load('adventurer-run-03L.png'),
-                         pygame.image.load('adventurer-run-04L.png'), pygame.image.load('adventurer-run-05L.png')]
+        self.walkLeft = [pygame.image.load('Sprites/adventurer-run-00L.png'), pygame.image.load(
+            'Sprites/adventurer-run-01L.png'),
+                         pygame.image.load('Sprites/adventurer-run-02L.png'), pygame.image.load(
+                'Sprites/adventurer-run-03L.png'),
+                         pygame.image.load('Sprites/adventurer-run-04L.png'), pygame.image.load(
+                'Sprites/adventurer-run-05L.png')]
         # scale images
         for i, v in enumerate(self.walkLeft):
             self.walkLeft[i] = pygame.transform.scale(v, (v.get_width() * scale, v.get_height() * scale))
 
         # load and scale idle sprites
-        self.idle = pygame.image.load('cursor.png')
-        self.idleL = pygame.image.load('cursorL.png')
+        self.idle = pygame.image.load('Sprites/cursor.png')
+        self.idleL = pygame.image.load('Sprites/cursorL.png')
         self.idle = pygame.transform.scale(self.idle, (self.idle.get_width() * scale, self.idle.get_height() * scale))
         self.idleL = pygame.transform.scale(self.idleL, (self.idleL.get_width() * scale, self.idleL.get_height() * scale))
         # variable to keep track of the animation cycle
@@ -75,16 +77,16 @@ class Player(Sprite):
         # makes sure that if the sprite moves then the collision box will move as well
         self.rect.update((self.X + 53, self.Y + 32), (23 * self.scale, 27 * self.scale))
 
-    def borderCollision(self):
+    def borderCollision(self, surface):
         # check player's position in relation to screen border
         if self.X <= -11 * self.scale:
             self.X = -11 * self.scale
         if self.Y <= -7 * self.scale:
             self.Y = -7 * self.scale
-        if self.X >= m.screen.get_width() - 40 * self.scale:
-            self.X = m.screen.get_width() - 40 * self.scale
-        if self.Y >= m.screen.get_height() - 37 * self.scale:
-            self.Y = m.screen.get_height() - 37 * self.scale
+        if self.X >= surface.get_width() - 40 * self.scale:
+            self.X = surface.get_width() - 40 * self.scale
+        if self.Y >= surface.get_height() - 37 * self.scale:
+            self.Y = surface.get_height() - 37 * self.scale
 
     def animate(self):
         # if player is at the end of cycle, reset to beginning

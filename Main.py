@@ -1,7 +1,4 @@
-import eventmanager
-import Model
-import Controller
-import View
+from MVC import Model, Controller, View, eventmanager
 
 evManager = eventmanager.EventManager()
 gamemodel = Model.GameEngine(evManager)

@@ -1,4 +1,4 @@
-from Button_class import Button
+from Classes.Button_class import Button
 import pygame
 
 
@@ -7,7 +7,7 @@ class Slider(Button):
     def __init__(self, x, y):
         super().__init__(x, y, box_X=120, box_Y=120)
         # load image
-        self.image = pygame.image.load('knob.png')
+        self.image = pygame.image.load('Sprites/knob.png')
         # attributes to calculate volume
         self.lowerBound = -262
         # furthest right position minus the width of the knob
@@ -52,13 +52,9 @@ class Slider(Button):
 
 
 class BackButton(Button):
-    # back button
     def __init__(self, x, y):
         super().__init__(x, y, box_X=300, box_Y=100)
 
-    # go to first level
-    def action(self):
-        pass
-
 
 settingsbuttons = [BackButton(75, 710), Slider(0, 17)]
+titlebuttons = [Button(517, 252), Button(517, 557), Button(517, 405), Button(517, 711)]

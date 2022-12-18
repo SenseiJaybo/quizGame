@@ -1,5 +1,5 @@
 import unittest
-from State_machine import GameMachine
+from Classes.State_machine import GameMachine
 
 
 class stateMachineTesting(unittest.TestCase):

@@ -1,6 +1,5 @@
 import unittest
-import TextBox
-import Level
+from Classes import TextBox, Level
 
 
 class MyTestCase(unittest.TestCase):
